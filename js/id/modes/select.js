@@ -8,11 +8,7 @@ iD.modes.Select = function(context, selectedIDs) {
         timeout = null,
         behaviors = [
             iD.behavior.Hover(context),
-            iD.behavior.Select(context),
-            iD.behavior.Lasso(context),
-            iD.modes.DragNode(context)
-                .selectedIDs(selectedIDs)
-                .behavior],
+            iD.behavior.Select(context)],
         inspector,
         //radialMenu,
         newFeature = false;
