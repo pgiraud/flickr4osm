@@ -3,6 +3,9 @@ iD.ui.Sidebar = function(context) {
         current;
 
     function sidebar(selection) {
+        var photosListWrap = selection.append('div')
+            .attr('class', 'photos-list-pane')
+            .call(flickr4osm.ui.PhotoList(context));
         //var featureListWrap = selection.append('div')
             //.attr('class', 'feature-list-pane')
             //.call(iD.ui.FeatureList(context));
