@@ -224,38 +224,3 @@ window.flickr4osm = function () {
 
     return d3.rebind(context, dispatch, 'on');
 };
-
-iD.version = '1.1.0beta1';
-
-(function() {
-    var detected = {};
-
-    var ua = navigator.userAgent,
-        msie = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
-
-    if (msie.exec(ua) !== null) {
-        var rv = parseFloat(RegExp.$1);
-        detected.support = !(rv && rv < 9);
-    } else {
-        detected.support = true;
-    }
-
-    // Added due to incomplete svg style support. See #715
-    detected.opera = ua.indexOf('Opera') >= 0;
-
-    detected.locale = navigator.language || navigator.userLanguage;
-
-    detected.filedrop = (window.FileReader && 'ondrop' in window);
-
-    function nav(x) {
-        return navigator.userAgent.indexOf(x) !== -1;
-    }
-
-    if (nav('Win')) detected.os = 'win';
-    else if (nav('Mac')) detected.os = 'mac';
-    else if (nav('X11')) detected.os = 'linux';
-    else if (nav('Linux')) detected.os = 'linux';
-    else detected.os = 'win';
-
-    iD.detect = function() { return detected; };
-})();
