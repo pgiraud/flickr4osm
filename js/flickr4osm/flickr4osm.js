@@ -23,6 +23,7 @@ window.flickr4osm = function () {
         ui = flickr4osm.ui(context),
         map = iD.Map(context),
         connection = iD.Connection(),
+        flickr_connection = flickr4osm.Connection(),
         locale = iD.detect().locale,
         localePath;
 
@@ -61,6 +62,7 @@ window.flickr4osm = function () {
     /* Straight accessors. Avoid using these if you can. */
     context.ui = function() { return ui; };
     context.connection = function() { return connection; };
+    context.flickr_connection = function() { return flickr_connection; };
     context.history = function() { return history; };
     context.map = function() { return map; };
 
@@ -221,6 +223,8 @@ window.flickr4osm = function () {
     context.toggleFullscreen = function() {
         dispatch.toggleFullscreen();
     };
+
+    flickr_connection.authenticate();
 
     return d3.rebind(context, dispatch, 'on');
 };
