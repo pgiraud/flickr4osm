@@ -181,7 +181,7 @@ flickr4osm.ui = function(context) {
         });
     }
 
-    ui.sidebar = iD.ui.Sidebar(context);
+    ui.sidebar = flickr4osm.ui.Sidebar(context);
 
     return ui;
 };

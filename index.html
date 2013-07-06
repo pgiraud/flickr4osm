@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset='utf-8'>
-        <title>iD</title>
+        <title>Flickr4OSM</title>
         <link rel='stylesheet' href='../iD/dist/iD.css'>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -21,11 +21,11 @@
     <body>
         <div id='id-container'></div>
         <script>
-            var id = flickr4osm();
-            id.assetPath('../iD/dist/');
+            var f4o = flickr4osm();
+            f4o.assetPath('../iD/dist/');
 
             d3.select('#id-container')
-                .call(id.ui());
+                .call(f4o.ui());
         </script>
     </body>
 </html>

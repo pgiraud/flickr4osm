@@ -1,4 +1,4 @@
-iD.ui.Sidebar = function(context) {
+flickr4osm.ui.Sidebar = function(context) {
     var inspector = iD.ui.Inspector(context),
         current;
 
