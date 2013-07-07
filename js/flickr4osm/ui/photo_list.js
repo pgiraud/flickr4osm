@@ -2,38 +2,58 @@ flickr4osm.ui.PhotoList = function(context) {
     var connection = context.flickr_connection();
 
     function PhotoList(selection) {
-        var $wrap = selection.selectAll('.panewrap')
-            .data([0]);
-
-        var $enter = $wrap.enter().append('div')
-            .attr('class', 'panewrap');
-
-        $enter.append('div')
-            .attr('class', 'photos-list-pane pane');
-
-        var $listPane = $wrap.select('.photos-list-pane');
+        //var $wrap = selection.selectAll('.panewrap')
+            //.data([0]);
 
         var listWrap = selection.append('div')
-            .attr('class', 'inspector-body');
+            .attr('class', 'photos-body');
 
+        var list = listWrap.append('div')
+            .attr('class', 'photo-list cf');
         //var list = listWrap.append('div')
             //.attr('class', 'preset-list fillL cf')
             //.call(drawList);
-    }
 
-    function drawList() {
-        connection.getPhotos(function(photos) {
-            console.log(photos);
-            for (var i = 0; i < photos.length; i++) {
-                var photo = photos[i];
-                var img = $('<img />', {
-                    src: getPhotoUrl(photo, 's')
-                }).click($.proxy(function(photo) {
-                    flickr.photos.setTags(photo, 'toto');
-                }, null, photo));
-                $('.photos-list-pane').append(img);
-            }
-        });
+        var pagesWrap = selection.append('div')
+            .attr('class', 'photos-pagination');
+        var pagination = pagesWrap.append('ul');
+
+        var page = null;
+
+        function drawList() {
+            connection.getPhotos(page, function(photos) {
+                console.log(photos[0]);
+
+                var items = list.selectAll('.photo-list-item')
+                    .data(photos.photo, function(d) { return d.id; });
+
+                var enter = items.enter().append('div')
+                    .attr('class', 'photo-list-item')
+                    .on('click', function(d) { click(d.entity); });
+
+                var img = enter.append('img')
+                    .attr('src', function(d) {
+                        return getPhotoUrl(d, 's');
+                    });
+
+                paginate(photos.page, photos.pages);
+            });
+        }
+
+        function paginate(page, pages) {
+            // still needs work
+            var wrap = pagination.append('li');
+            wrap.append('a')
+                .text('«');
+            wrap = pagination.append('li');
+            wrap.append('a')
+                .text('1');
+            wrap = pagination.append('li');
+            wrap.append('a')
+                .text('2');
+        }
+
+        connection.on('flickrauthenticated', function() {drawList();});
     }
 
     function format(string, data) {
@@ -56,7 +76,6 @@ flickr4osm.ui.PhotoList = function(context) {
         return format(url, photo);
     }
 
-    connection.on('flickrauthenticated', function() {drawList();});
 
     return PhotoList;
 };

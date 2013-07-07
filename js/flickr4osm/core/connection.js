@@ -26,12 +26,14 @@ flickr4osm.Connection = function() {
         return auth.authenticate(done);
     };
 
-    connection.getPhotos = function(callback) {
+    connection.getPhotos = function(page, callback) {
+        page = page || 1;
         var params = {
             api_key: API_KEY,
             auth_token: auth_token,
             user_id: user.nsid,
-            per_page: 50,
+            per_page: 18,
+            page: page,
             method: 'flickr.people.getPhotos',
             format: 'json',
             nojsoncallback: 1
@@ -41,8 +43,7 @@ flickr4osm.Connection = function() {
         params.api_sig = MD5.hex(signature);
 
         $.getJSON(FLICKR_REST_URL + $.param(params), function(data) {
-            callback(data.photos.photo);
-            //console.log(data);
+            callback(data.photos);
         });
     };
 
