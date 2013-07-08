@@ -1,6 +1,7 @@
+#sidebar {
+    float: left;
+}
 .photos-list-pane {
-    border: 1px solid grey;
-    height: 50%;
     overflow: auto;
 }
 .photo-list-item {
@@ -44,4 +45,8 @@
     background-color: #ffffff;
     border: 1px solid #dddddd;
     border-left-width: 0;
+}
+
+.pane .inspector-body {
+    top: 60px;
 }

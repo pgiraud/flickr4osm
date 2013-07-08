@@ -1,7 +1,8 @@
 flickr4osm.ui.PhotoList = function(context) {
-    var connection = context.flickr_connection();
+    var event = d3.dispatch('choose');
 
-    function PhotoList(selection) {
+    function photoList(selection) {
+        var connection = context.flickr_connection();
         //var $wrap = selection.selectAll('.panewrap')
             //.data([0]);
 
@@ -29,11 +30,11 @@ flickr4osm.ui.PhotoList = function(context) {
 
                 var enter = items.enter().append('div')
                     .attr('class', 'photo-list-item')
-                    .on('click', function(d) { click(d.entity); });
+                    .on('click', function(d) { event.choose(d); });
 
                 var img = enter.append('img')
                     .attr('src', function(d) {
-                        return getPhotoUrl(d, 's');
+                        return flickr4osm.util.getPhotoUrl(d, 's');
                     });
 
                 paginate(photos.page, photos.pages);
@@ -56,26 +57,5 @@ flickr4osm.ui.PhotoList = function(context) {
         connection.on('flickrauthenticated', function() {drawList();});
     }
 
-    function format(string, data) {
-        return string.replace(/{[^{}]+}/g, function(key){
-            return data[key.replace(/[{}]+/g, "")] || "";
-        });
-    }
-
-    /**
-     * Utility function to build a flickr url for a photo
-     *
-     * Parameters:
-     * photo - {Object} the photo
-     * size - {String} Either 'm', 's', 't', 'z', 'b'. Size of the photo. See
-     *     http://www.flickr.com/services/api/misc.urls.html
-     */
-    function getPhotoUrl(photo, size) {
-        size = size || 's';
-        var url = 'http://farm{farm}.staticflickr.com/{server}/{id}_{secret}_s.jpg';
-        return format(url, photo);
-    }
-
-
-    return PhotoList;
+    return d3.rebind(photoList, event, 'on');
 };

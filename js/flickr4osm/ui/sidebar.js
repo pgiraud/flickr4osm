@@ -1,78 +1,47 @@
 flickr4osm.ui.Sidebar = function(context) {
-    var inspector = iD.ui.Inspector(context),
-        current;
+    var photoList = flickr4osm.ui.PhotoList(context),
+        photoEditor = flickr4osm.ui.PhotoEditor(context);
 
     function sidebar(selection) {
-        var photosListWrap = selection.append('div')
-            .attr('class', 'photos-list-pane')
-            .call(flickr4osm.ui.PhotoList(context));
         //var featureListWrap = selection.append('div')
             //.attr('class', 'feature-list-pane')
             //.call(iD.ui.FeatureList(context));
 
-        selection.call(iD.ui.Notice(context));
-
         var inspectorWrap = selection.append('div')
-            .attr('class', 'inspector-hidden inspector-wrap fr');
+            .attr('class', 'inspector-wrap fr');
 
-        sidebar.hover = function(id) {
-            if (!current && id) {
-                //featureListWrap.classed('inspector-hidden', true);
-                inspectorWrap.classed('inspector-hidden', false)
-                    .classed('inspector-hover', true);
+        var $wrap = inspectorWrap.selectAll('.panewrap')
+            .data([0]);
 
-                if (inspector.entityID() !== id || inspector.state() !== 'hover') {
-                    inspector
-                        .state('hover')
-                        .entityID(id);
+        var $enter = $wrap.enter().append('div')
+            .attr('class', 'panewrap');
 
-                    inspectorWrap.call(inspector);
-                }
-            } else {
-                //featureListWrap.classed('inspector-hidden', false);
-                inspectorWrap.classed('inspector-hidden', true);
-            }
-        };
+        $enter.append('div')
+            .attr('class', 'photos-list-pane pane')
+            .call(photoList);
 
-        sidebar.select = function(id, newFeature) {
-            if (!current && id) {
-                //featureListWrap.classed('inspector-hidden', true);
-                inspectorWrap.classed('inspector-hidden', false)
-                    .classed('inspector-hover', false);
+        $enter.append('div')
+            .attr('class', 'photo-editor-pane pane');
 
-                if (inspector.entityID() !== id || inspector.state() !== 'select') {
-                    inspector
-                        .state('select')
-                        .entityID(id)
-                        .newFeature(newFeature);
+        var $listPane = $wrap.select('.photos-list-pane');
+        var $editorPane = $wrap.select('.photo-editor-pane');
 
-                    inspectorWrap.call(inspector);
-                }
-            } else {
-                //featureListWrap.classed('inspector-hidden', false);
-                inspectorWrap.classed('inspector-hidden', true);
-            }
-        };
+        photoList.on('choose', selectPhoto);
+        photoEditor.on('close', showList);
 
-        sidebar.show = function(component) {
-            //featureListWrap.classed('inspector-hidden', true);
-            inspectorWrap.classed('inspector-hidden', true);
-            current = selection.append('div')
-                .attr('class', 'sidebar-component')
-                .call(component);
-        };
+        function showList(preset) {
+            $wrap.transition()
+                .style('right', '-100%');
+        }
 
-        sidebar.hide = function() {
-            //featureListWrap.classed('inspector-hidden', false);
-            current.remove();
-            current = null;
-        };
+        function selectPhoto(photo) {
+            $wrap.transition()
+                .style('right', '0%');
+
+            $editorPane.call(photoEditor
+                .photoId(photo));
+        }
     }
-
-    sidebar.hover = function() {};
-    sidebar.select = function() {};
-    sidebar.show = function() {};
-    sidebar.hide = function() {};
 
     return sidebar;
 };

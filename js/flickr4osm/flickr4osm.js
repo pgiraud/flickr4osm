@@ -1,4 +1,7 @@
 window.flickr4osm = function () {
+
+    
+
     window.locale.en = iD.data.en;
     window.locale.current('en');
 
