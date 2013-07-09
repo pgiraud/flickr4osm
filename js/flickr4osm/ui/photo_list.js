@@ -37,6 +37,20 @@ flickr4osm.ui.PhotoList = function(context) {
                         return flickr4osm.util.getPhotoUrl(d, 's');
                     });
 
+                var geo = enter.append('img')
+                    .attr('class', 'geo')
+                    .attr('src', 'images/geo.png');
+                geo.filter(function(d) {
+                    return !(d.longitude && d.latitude);
+                }).remove();
+
+                var osm = enter.append('img')
+                    .attr('class', 'machine-tag')
+                    .attr('src', 'images/osm.png');
+                osm.filter(function(d) {
+                    return d.machine_tags.length == 0;
+                }).remove();
+
                 paginate(photos.page, photos.pages);
             });
         }

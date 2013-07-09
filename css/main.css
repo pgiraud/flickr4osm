@@ -5,6 +5,7 @@
     overflow: auto;
 }
 .photo-list-item {
+    position: relative;
     margin-left: 4px;
     margin-top: 4px;
     float: left;
@@ -33,6 +34,23 @@
 .photo-list-item img {
     width: 50px;
     margin: 0 0 10px;
+}
+.photo-list-item img.geo,
+.photo-list-item img.machine-tag {
+    position: absolute;
+    bottom: 0;
+    margin: 0 0 3px;
+}
+.photo-list-item img.geo {
+    width: 15px;
+    left: 0;
+    opacity: 0.3;
+    margin-left: 3px;
+}
+.photo-list-item img.machine-tag {
+    width: 15px;
+    right: 0;
+    margin-right: 3px;
 }
 .photos-pagination li {
     display: inline;

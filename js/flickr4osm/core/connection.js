@@ -32,10 +32,11 @@ flickr4osm.Connection = function() {
             api_key: API_KEY,
             auth_token: auth_token,
             user_id: user.nsid,
-            per_page: 18,
+            per_page: 30,
             page: page,
             method: 'flickr.people.getPhotos',
             format: 'json',
+            extras: 'geo,machine_tags',
             nojsoncallback: 1
         };
         var signature = auth.signature(params);
