@@ -52,18 +52,6 @@
     right: 0;
     margin-right: 3px;
 }
-.photos-pagination li {
-    display: inline;
-}
-.photos-pagination ul > li > a {
-    float: left;
-    padding: 4px 12px;
-    line-height: 20px;
-    text-decoration: none;
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-left-width: 0;
-}
 
 .pane .inspector-body {
     top: 60px;

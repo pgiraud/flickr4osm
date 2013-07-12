@@ -15,10 +15,6 @@ flickr4osm.ui.PhotoList = function(context) {
             //.attr('class', 'preset-list fillL cf')
             //.call(drawList);
 
-        var pagesWrap = selection.append('div')
-            .attr('class', 'photos-pagination');
-        var pagination = pagesWrap.append('ul');
-
         var page = null;
 
         function drawList() {
@@ -48,22 +44,7 @@ flickr4osm.ui.PhotoList = function(context) {
                 }).append('img')
                     .attr('class', 'machine-tag')
                     .attr('src', 'images/osm.png');
-
-                paginate(photos.page, photos.pages);
             });
-        }
-
-        function paginate(page, pages) {
-            // still needs work
-            var wrap = pagination.append('li');
-            wrap.append('a')
-                .text('«');
-            wrap = pagination.append('li');
-            wrap.append('a')
-                .text('1');
-            wrap = pagination.append('li');
-            wrap.append('a')
-                .text('2');
         }
 
         connection.on('flickrauthenticated', function() {drawList();});
