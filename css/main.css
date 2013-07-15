@@ -53,3 +53,6 @@
 .pane .inspector-body {
     top: 60px;
 }
+.pane .inspector-body .photo {
+    text-align: center;
+}

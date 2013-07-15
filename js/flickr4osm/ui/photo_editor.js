@@ -29,11 +29,18 @@ flickr4osm.ui.PhotoEditor = function(context) {
         $enter = $body.enter().append('div')
             .attr('class', 'inspector-body');
 
-        $enter.append('div')
-            .text(function(d) {return d.id;});
+        var container = $enter.append('div')
+            .attr('class', 'photo');
 
-        var img = $enter.append('img')
+        var img = container.append('img')
             .attr('src', flickr4osm.util.getPhotoUrl(photo, 'n'));
+
+        var map = context.map();
+
+        if (photo.longitude && photo.latitude) {
+            map.centerZoom([photo.longitude, photo.latitude], 19);
+        }
+
     }
 
     photoEditor.photoId = function(_) {

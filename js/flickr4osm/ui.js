@@ -18,7 +18,6 @@ flickr4osm.ui = function(context) {
             .attr('class', 'col4')
             .call(ui.sidebar);
 
-        /*
         var content = container.append('div')
             .attr('id', 'content');
 
@@ -52,52 +51,51 @@ flickr4osm.ui = function(context) {
                 .call(iD.ui.Geocoder(context));
         }
 
-        var about = content.append('div')
-            .attr('class','col12 about-block fillD');
+        //var about = content.append('div')
+            //.attr('class','col12 about-block fillD');
 
-        about.append('div')
-            .attr('class', 'api-status')
-            .call(iD.ui.Status(context));
+        //about.append('div')
+            //.attr('class', 'api-status')
+            //.call(iD.ui.Status(context));
 
-        if (!context.embed()) {
-            about.append('div')
-                .attr('class', 'account')
-                .call(iD.ui.Account(context));
-        }
+        //if (!context.embed()) {
+            //about.append('div')
+                //.attr('class', 'account')
+                //.call(iD.ui.Account(context));
+        //}
 
         d3.select(window).on('resize.editor', function() {
             map.dimensions(m.dimensions());
         });
 
-        function pan(d) {
-            return function() {
-                context.pan(d);
-            };
-        }
+        //function pan(d) {
+            //return function() {
+                //context.pan(d);
+            //};
+        //}
 
-        // pan amount
-        var pa = 5;
+        //// pan amount
+        //var pa = 5;
 
-        var keybinding = d3.keybinding('main')
-            .on('⌫', function() { d3.event.preventDefault(); })
-            .on('←', pan([pa, 0]))
-            .on('↑', pan([0, pa]))
-            .on('→', pan([-pa, 0]))
-            .on('↓', pan([0, -pa]));
+        //var keybinding = d3.keybinding('main')
+            //.on('⌫', function() { d3.event.preventDefault(); })
+            //.on('←', pan([pa, 0]))
+            //.on('↑', pan([0, pa]))
+            //.on('→', pan([-pa, 0]))
+            //.on('↓', pan([0, -pa]));
 
-        d3.select(document)
-            .call(keybinding);
+        //d3.select(document)
+            //.call(keybinding);
 
-        //context.enter(iD.modes.Browse(context));
+        ////context.enter(iD.modes.Browse(context));
 
-        context.container()
-            .call(iD.ui.Splash(context))
-            .call(iD.ui.Restore(context))
-            .classed("mode-browse", true);
+        //context.container()
+            //.call(iD.ui.Splash(context))
+            //.call(iD.ui.Restore(context))
+            //.classed("mode-browse", true);
 
-        var authenticating = iD.ui.Loading(context)
-            .message(t('loading_auth'));
-        */
+        //var authenticating = iD.ui.Loading(context)
+            //.message(t('loading_auth'));
     }
 
     function ui(container) {
