@@ -21,7 +21,6 @@ iD.modes.Browse = function(context) {
 
         // Get focus on the body.
         document.activeElement.blur();
-        context.ui().sidebar.select(null);
     };
 
     mode.exit = function() {

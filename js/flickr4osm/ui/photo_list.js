@@ -19,7 +19,6 @@ flickr4osm.ui.PhotoList = function(context) {
 
         function drawList() {
             connection.getPhotos(page, function(photos) {
-                console.log(photos[0]);
 
                 var items = list.selectAll('.photo-list-item')
                     .data(photos.photo, function(d) { return d.id; });

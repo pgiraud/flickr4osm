@@ -40,6 +40,8 @@ flickr4osm.ui.PhotoEditor = function(context) {
         if (photo.longitude && photo.latitude) {
             map.centerZoom([photo.longitude, photo.latitude], 19);
         }
+        context.enter(iD.modes.Browse(context));
+        context.container().classed("mode-browse", true);
 
     }
 

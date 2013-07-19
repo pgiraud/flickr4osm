@@ -56,3 +56,18 @@
 .pane .inspector-body .photo {
     text-align: center;
 }
+
+.tag-row .key-wrap,
+.tag-row .input-wrap-position {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: auto;
+    width: 50%;
+}
+.tag-row .key-wrap {
+    font-weight: bold;
+}
+.radial-menu-tooltip {
+    width: 300px;
+}

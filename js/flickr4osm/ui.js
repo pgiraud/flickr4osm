@@ -87,7 +87,7 @@ flickr4osm.ui = function(context) {
         //d3.select(document)
             //.call(keybinding);
 
-        ////context.enter(iD.modes.Browse(context));
+        //context.enter(iD.modes.Browse(context));
 
         //context.container()
             //.call(iD.ui.Splash(context))
