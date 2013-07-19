@@ -205,8 +205,8 @@ iD.modes.Select = function(context, selectedIDs) {
             .on('undone.select', null)
             .on('redone.select', null);
 
+        closeTooltip();
         context.surface()
-            .call(closeTooltip)
             //.on('dblclick.select', null)
             .selectAll(".selected")
             .classed('selected', false);

@@ -21,6 +21,8 @@ iD.modes.Browse = function(context) {
 
         // Get focus on the body.
         document.activeElement.blur();
+
+        context.container().classed("mode-browse", true);
     };
 
     mode.exit = function() {

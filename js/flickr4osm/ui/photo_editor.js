@@ -16,6 +16,11 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
         $header.select('.preset-close')
             .on('click', function() {
+                // make sure we exit the select mode
+                context.enter(iD.modes.Browse(context));
+                // it would be better to have a better browse mode
+                iD.modes.Browse(context).exit();
+                context.container().classed("mode-browse", false);
                 event.close();
             });
 
@@ -42,7 +47,6 @@ flickr4osm.ui.PhotoEditor = function(context) {
         }
         context.enter(iD.modes.Browse(context));
         context.container().classed("mode-browse", true);
-
     }
 
     photoEditor.photoId = function(_) {
