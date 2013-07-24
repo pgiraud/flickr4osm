@@ -4,6 +4,7 @@ flickr4osm.Connection = function() {
         connection = {},
         API_KEY = 'e67a11ef8aa80cb9eea71071d29783c3',
         FLICKR_REST_URL = "http://www.flickr.com/services/rest/?",
+        MD5 = new Hashes.MD5(),
         auth = flickrAuth({
             api_key: API_KEY,
             url: FLICKR_REST_URL,
@@ -40,7 +41,6 @@ flickr4osm.Connection = function() {
             nojsoncallback: 1
         };
         var signature = auth.signature(params);
-        var MD5 = new Hashes.MD5();
         params.api_sig = MD5.hex(signature);
 
         $.getJSON(FLICKR_REST_URL + $.param(params), function(data) {
@@ -48,6 +48,23 @@ flickr4osm.Connection = function() {
         });
     };
 
+    connection.addTag = function(photo, tag, callback) {
+        var o = {
+            api_key: API_KEY,
+            auth_token: auth_token,
+            method: 'flickr.photos.addTags',
+            photo_id: photo,
+            tags: tag,
+            format: 'json',
+            nojsoncallback: 1
+        };
+        var signature = auth.signature(o);
+        o.api_sig = MD5.hex(signature);
+
+        $.post(FLICKR_REST_URL, o, function(data) {
+            console.log(data);
+        }, 'json');
+    };
 
     return d3.rebind(connection, event, 'on');
 };

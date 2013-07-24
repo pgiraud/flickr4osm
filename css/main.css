@@ -71,3 +71,15 @@
 .radial-menu-tooltip {
     width: 300px;
 }
+
+.tooltip-linker {
+    float: right;
+}
+.flickr-tag {
+    width: 25px;
+    height: 25px;
+    background-image: url("../images/sprite_flickr.png");
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}

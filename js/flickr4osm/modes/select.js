@@ -44,6 +44,15 @@ iD.modes.Select = function(context, selectedIDs) {
             .style('display', 'block');
         tooltip.append('h3').html(preset.name());
 
+        var linker = tooltip.append('a')
+            .attr('class', 'tooltip-linker')
+            .on('click', function() {
+                var id = entity.id.substring(1);
+                var tag = ["osm:", entity.type, '=', id].join('');
+                context.ui().sidebar.addTag(tag);
+            });
+        linker.html('<i class="flickr-tag"></i>Add to photo tags');
+
         var $list = tooltip.append('ul');
 
         var entries = d3.entries(tags);

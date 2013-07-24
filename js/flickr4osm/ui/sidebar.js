@@ -41,6 +41,10 @@ flickr4osm.ui.Sidebar = function(context) {
             $editorPane.call(photoEditor
                 .photoId(photo));
         }
+
+        sidebar.addTag = function(tag) {
+            photoEditor.addTag(tag);
+        };
     }
 
     return sidebar;

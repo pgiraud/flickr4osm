@@ -49,6 +49,10 @@ flickr4osm.ui.PhotoEditor = function(context) {
         context.container().classed("mode-browse", true);
     }
 
+    photoEditor.addTag = function(tag) {
+        context.flickr_connection().addTag(photo.id, tag);
+    };
+
     photoEditor.photoId = function(_) {
         photo = _;
         return photoEditor;
