@@ -40,6 +40,16 @@ flickr4osm.ui.PhotoEditor = function(context) {
         var img = container.append('img')
             .attr('src', flickr4osm.util.getPhotoUrl(photo, 'n'));
 
+        var tags_wrap = $enter.append('ul')
+            .attr('class', 'tags');
+        console.log(photo);
+
+        var tags = tags_wrap.selectAll('li')
+            .data(photo.machine_tags.split(' '))
+            .enter().append('li')
+            .text(function(d) {return d;});
+
+
         var map = context.map();
 
         if (photo.longitude && photo.latitude) {
