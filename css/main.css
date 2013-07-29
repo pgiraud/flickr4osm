@@ -1,3 +1,16 @@
+#sidebar {
+    float: left;
+}
+#id-container {
+    width: auto;
+    position: relative;
+}
+#content {
+    padding: 10px;
+}
+.map-controls {
+    left: auto;
+}
 .photos-list-pane {
     overflow: auto;
 }
@@ -56,6 +69,52 @@
 .pane .inspector-body .photo {
     text-align: center;
 }
+#tags {
+    padding-left: 10px;
+}
+#tags li {
+    line-height: 24px;
+}
+#tags li.new a.add {
+    display: inline-block;
+    padding: 0;
+    width: 18px;
+    margin-right: 1px;
+    margin-left: 4px;
+    height: 18px;
+    background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1810px -10px;
+}
+#tags li.new a.loading {
+    background: url(../images/loading.gif) no-repeat;
+}
+#tags li.new a.done {
+    background-position: -1530px -90px;
+}
+#tags li a.delete-x {
+    display: none;
+    padding: 0;
+    width: 8px;
+    margin-right: 1px;
+    margin-left: 4px;
+    height: 14px;
+    background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1455px -10px;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+#tags li:hover a.delete-x {
+    display: inline-block;
+}
+#tags li a.delete-x:hover {
+    background-position: -1455px -50px;
+}
+#tags li a.add span,
+#tags li a.delete-x span {
+    position: absolute;
+    left: -999em;
+}
+
 
 .tag-row .key-wrap,
 .tag-row .input-wrap-position {
@@ -70,16 +129,4 @@
 }
 .radial-menu-tooltip {
     width: 300px;
-}
-
-.tooltip-linker {
-    float: right;
-}
-.flickr-tag {
-    width: 25px;
-    height: 25px;
-    background-image: url("../images/sprite_flickr.png");
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
 }

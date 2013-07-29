@@ -13,10 +13,8 @@ flickr4osm.ui = function(context) {
             map.centerZoom([-77.02271, 38.90085], 20);
         }
 
-        container.append('div')
-            .attr('id', 'sidebar')
-            .attr('class', 'col4')
-            .call(ui.sidebar);
+        var sidebar = d3.select('#sidebar');
+        sidebar.call(ui.sidebar);
 
         var content = container.append('div')
             .attr('id', 'content');

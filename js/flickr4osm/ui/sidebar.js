@@ -47,5 +47,7 @@ flickr4osm.ui.Sidebar = function(context) {
         };
     }
 
+    sidebar.editor = photoEditor;
+
     return sidebar;
 };

@@ -1,6 +1,7 @@
 flickr4osm.ui.PhotoEditor = function(context) {
     var event = d3.dispatch('close'),
-        photo;
+        photo,
+        tags;
 
     function photoEditor(selection) {
         var $header = selection.selectAll('.header')
@@ -41,14 +42,10 @@ flickr4osm.ui.PhotoEditor = function(context) {
             .attr('src', flickr4osm.util.getPhotoUrl(photo, 'n'));
 
         var tags_wrap = $enter.append('ul')
+            .attr('id', 'tags')
             .attr('class', 'tags');
-        console.log(photo);
 
-        var tags = tags_wrap.selectAll('li')
-            .data(photo.machine_tags.split(' '))
-            .enter().append('li')
-            .text(function(d) {return d;});
-
+        tags = photo.machine_tags.split(' ');
 
         var map = context.map();
 
@@ -57,11 +54,61 @@ flickr4osm.ui.PhotoEditor = function(context) {
         }
         context.enter(iD.modes.Browse(context));
         context.container().classed("mode-browse", true);
-    }
 
-    photoEditor.addTag = function(tag) {
-        context.flickr_connection().addTag(photo.id, tag);
-    };
+        photoEditor.select = function(entity) {
+            var id = entity.id.substring(1);
+            var tag = ["osm:", entity.type, '=', id].join('');
+            var $tag = tags_wrap.selectAll('li.new')
+                .data([tag], function(d) {return d;});
+            $tag.exit().remove();
+
+            var li = $tag.enter()
+                .insert('li', ':first-child')
+                .attr('class', 'new')
+                .style('opacity', 0)
+                .text(function(d) {return d;});
+            li.insert('a')
+                .attr('class', 'add')
+                .on('click', function(d) {
+                    var self = this;
+                    d3.select(self).classed('loading', true);
+                    context.flickr_connection().addTag(photo.id, tag, function() {
+                        d3.select(self)
+                            .classed('loading', false)
+                            .classed('done', true);
+                        window.setTimeout(function() {
+                            d3.select(self.parentNode).remove();
+                            tags = [d].concat(tags);
+                            showTags();
+                        }, 1000);
+                    });
+                })
+                .append('span')
+                .text('[+]');
+
+            li.transition()
+              .delay(250)
+              .duration(500)
+              .style('opacity', 100);
+        };
+
+        function showTags() {
+            var $tags = tags_wrap.selectAll('li.old')
+                .data(tags, function(d) {return d;});
+            $tags.exit().remove();
+            $tags.enter().insert('li', ':first-child')
+                .attr('class', 'old')
+                .text(function(d) {return d;})
+                .append('a')
+                .attr('class', 'delete-x')
+                .on('click', function(d) {
+                    console.log(d);
+                })
+                .append('span')
+                .text('[x]');
+        }
+        showTags();
+    }
 
     photoEditor.photoId = function(_) {
         photo = _;

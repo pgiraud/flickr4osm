@@ -62,7 +62,7 @@ flickr4osm.Connection = function() {
         o.api_sig = MD5.hex(signature);
 
         $.post(FLICKR_REST_URL, o, function(data) {
-            console.log(data);
+            callback(data);
         }, 'json');
     };
 

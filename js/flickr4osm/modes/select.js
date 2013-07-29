@@ -29,29 +29,19 @@ iD.modes.Select = function(context, selectedIDs) {
         }
     }
 
-    function showTooltip() {
+    function showTooltip(entity) {
         closeTooltip();
-        var entity = singular(),
-            tags = entity.tags;
+        var tags = entity.tags;
             preset = context.presets().match(entity, context.graph());
         var center = context.mouse();
 
-        tooltip = d3.select(document.body)
+        tooltip = d3.select("#content")
             .append('div')
             .attr('class', 'tooltip-inner radial-menu-tooltip')
             .style('left', 25 + center[0] + 'px')
             .style('top', 25 + center[1]+ 'px')
             .style('display', 'block');
         tooltip.append('h3').html(preset.name());
-
-        var linker = tooltip.append('a')
-            .attr('class', 'tooltip-linker')
-            .on('click', function() {
-                var id = entity.id.substring(1);
-                var tag = ["osm:", entity.type, '=', id].join('');
-                context.ui().sidebar.addTag(tag);
-            });
-        linker.html('<i class="flickr-tag"></i>Add to photo tags');
 
         var $list = tooltip.append('ul');
 
@@ -81,7 +71,8 @@ iD.modes.Select = function(context, selectedIDs) {
             surfaceNode.focus();
         }
 
-        showTooltip();
+        context.ui().photoEditor.select(singular());
+        showTooltip(singular());
     };
 
     //mode.newFeature = function(_) {
@@ -183,7 +174,8 @@ iD.modes.Select = function(context, selectedIDs) {
         var show = d3.event && !suppressMenu;
 
         if (show) {
-            showTooltip();
+            context.ui().sidebar.editor.select(singular());
+            showTooltip(singular());
         }
 
         //timeout = window.setTimeout(function() {
