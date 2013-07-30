@@ -71,7 +71,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 .insert('li', ':first-child')
                 .attr('class', 'new')
                 .style('opacity', 0)
-                .text(function(d) {return d;});
+                .text(function(d) {return d.substring(4);});
             li.insert('a')
                 .attr('class', 'add')
                 .on('click', function(d) {
@@ -104,7 +104,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
             $tags.enter()
                 .insert('li', ':first-child')
                 .attr('class', 'old')
-                .text(function(d) {return d.raw;})
+                .text(function(d) {return d.raw.substring(4);})
                 .append('a')
                 .attr('class', 'delete-x')
                 .on('click', function(d) {

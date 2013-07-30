@@ -90,8 +90,18 @@
 #tags li.new a.done {
     background-position: -1530px -90px;
 }
+#tags li.old {
+    display: inline-block;
+    border: 1px solid #dfdfdf;
+    margin: 2px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 0 2px;
+}
 #tags li a.delete-x {
-    display: none;
+    visibility: hidden;
+    display: inline-block;
     padding: 0;
     width: 8px;
     margin-right: 1px;
@@ -104,7 +114,7 @@
     transition: none;
 }
 #tags li:hover a.delete-x {
-    display: inline-block;
+    visibility: visible;
 }
 #tags li a.delete-x:hover {
     background-position: -1455px -50px;
