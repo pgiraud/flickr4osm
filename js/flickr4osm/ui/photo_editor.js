@@ -1,7 +1,8 @@
 flickr4osm.ui.PhotoEditor = function(context) {
     var event = d3.dispatch('close'),
         photo,
-        tags;
+        tags,
+        tags_wrap;
 
     function photoEditor(selection) {
         var $header = selection.selectAll('.header')
@@ -27,33 +28,37 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
         $enter.append('h3');
 
-        var $body = selection.selectAll('.inspector-body')
-            .data([photo], function(d) {return d.id;});
-        $body.exit().remove();
+        function loadPhoto(photo) {
+            var $body = selection.selectAll('.inspector-body')
+                .data([photo], function(d) {return d.id;});
+            $body.exit().remove();
 
-        // Enter
-        $enter = $body.enter().append('div')
-            .attr('class', 'inspector-body');
+            // Enter
+            $enter = $body.enter().append('div')
+                .attr('class', 'inspector-body');
 
-        var container = $enter.append('div')
-            .attr('class', 'photo');
+            var container = $enter.append('div')
+                .attr('class', 'photo');
 
-        var img = container.append('img')
-            .attr('src', flickr4osm.util.getPhotoUrl(photo, 'n'));
+            var img = container.append('img')
+                .attr('src', flickr4osm.util.getPhotoUrl(photo, 'n'));
 
-        var tags_wrap = $enter.append('ul')
-            .attr('id', 'tags')
-            .attr('class', 'tags');
+            $enter.append('ul')
+                .attr('id', 'tags')
+                .attr('class', 'tags');
 
-        tags = photo.machine_tags.split(' ');
+            tags = photo.tags.tag;
 
-        var map = context.map();
+            var map = context.map();
 
-        if (photo.longitude && photo.latitude) {
-            map.centerZoom([photo.longitude, photo.latitude], 19);
+            if (photo.longitude && photo.latitude) {
+                map.centerZoom([photo.longitude, photo.latitude], 19);
+            }
+            context.enter(iD.modes.Browse(context));
+            context.container().classed("mode-browse", true);
+
+            showTags();
         }
-        context.enter(iD.modes.Browse(context));
-        context.container().classed("mode-browse", true);
 
         photoEditor.select = function(entity) {
             var id = entity.id.substring(1);
@@ -78,8 +83,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
                             .classed('done', true);
                         window.setTimeout(function() {
                             d3.select(self.parentNode).remove();
-                            tags = [d].concat(tags);
-                            showTags();
+                            context.flickr_connection().getInfo(photo.id, loadPhoto);
                         }, 1000);
                     });
                 })
@@ -93,12 +97,14 @@ flickr4osm.ui.PhotoEditor = function(context) {
         };
 
         function showTags() {
+            tags_wrap = d3.select('.inspector-body ul#tags');
             var $tags = tags_wrap.selectAll('li.old')
-                .data(tags, function(d) {return d;});
+                .data(tags, function(d) {return d.id;});
             $tags.exit().remove();
-            $tags.enter().insert('li', ':first-child')
+            $tags.enter()
+                .insert('li', ':first-child')
                 .attr('class', 'old')
-                .text(function(d) {return d;})
+                .text(function(d) {return d.raw;})
                 .append('a')
                 .attr('class', 'delete-x')
                 .on('click', function(d) {
@@ -107,7 +113,8 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 .append('span')
                 .text('[x]');
         }
-        showTags();
+
+        context.flickr_connection().getInfo(photo.id, loadPhoto);
     }
 
     photoEditor.photoId = function(_) {
