@@ -112,6 +112,11 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 })
                 .append('span')
                 .text('[x]');
+
+            $tags.filter(function(d) {
+                return d.machine_tag === 0 ||
+                    d.raw.indexOf('osm') == -1;
+            }).remove();
         }
 
         context.flickr_connection().getInfo(photo.id, loadPhoto);
