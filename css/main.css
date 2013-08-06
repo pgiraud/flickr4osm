@@ -69,60 +69,62 @@
 .pane .inspector-body .photo {
     text-align: center;
 }
-#tags {
-    padding-left: 10px;
-}
+
 #tags li {
-    line-height: 24px;
+  display: inline-block;
+  border: 1px solid #dfdfdf;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0 2px;
+  line-height: 24px;
+  margin: 0 4px 4px 0;
+  background-color: white;
+  background-image: none;
+  white-space: nowrap;
 }
-#tags li.new a.add {
-    display: inline-block;
-    padding: 0;
-    width: 18px;
-    margin-right: 1px;
-    margin-left: 4px;
-    height: 18px;
-    background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1810px -10px;
+#tags li a {
+  display: inline-block;
+  width: 24px;
+  height: 18px;
+  position: relative;
+  top: 4px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
-#tags li.new a.loading {
-    background: url(../images/loading.gif) no-repeat;
+#tags li.new {
+  border-color: lightgreen;
 }
-#tags li.new a.done {
-    background-position: -1530px -90px;
+#tags li.new a {
+  background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1810px -10px;
 }
-#tags li.old {
-    display: inline-block;
-    border: 1px solid #dfdfdf;
-    margin: 2px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    padding: 0 2px;
+#tags li.old a {
+  visibility: hidden;
+  background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1410px -10px;
 }
-#tags li a.delete-x {
-    visibility: hidden;
-    display: inline-block;
-    padding: 0;
-    width: 8px;
-    margin-right: 1px;
-    margin-left: 4px;
-    height: 14px;
-    background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1455px -10px;
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
+#tags li.old:hover a {
+  visibility: visible;
 }
-#tags li:hover a.delete-x {
-    visibility: visible;
+#tags li.old:hover a:hover {
+  background-position: -1450px -50px;
 }
-#tags li a.delete-x:hover {
-    background-position: -1455px -50px;
+#tags li.done a {
+  background: url(http://l.yimg.com/g/images/flickr-sprite.png.v5) no-repeat -1530px -90px;
 }
-#tags li a.add span,
-#tags li a.delete-x span {
-    position: absolute;
-    left: -999em;
+#tags li.loading a {
+  visibility: visible;
+  top: 6px;
+  z-index: 0;
+  background: url(http://www.flickr.com/images/pulser2.gif) no-repeat;
+}
+#tags li.loading:hover a:hover {
+  background-position: 0 0;
+}
+#tags li a span {
+  position: absolute;
+  left: -999px;
 }
 
 

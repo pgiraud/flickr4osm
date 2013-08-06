@@ -83,5 +83,22 @@ flickr4osm.Connection = function() {
         }, 'json');
     };
 
+    connection.removeTag = function(tag, callback) {
+        var o = {
+            api_key: API_KEY,
+            auth_token: auth_token,
+            method: 'flickr.photos.removeTag',
+            tag_id: tag,
+            format: 'json',
+            nojsoncallback: 1
+        };
+        var signature = auth.signature(o);
+        o.api_sig = MD5.hex(signature);
+
+        $.getJSON(FLICKR_REST_URL + $.param(o), function(data) {
+            callback();
+        });
+    };
+
     return d3.rebind(connection, event, 'on');
 };

@@ -51,8 +51,9 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
             var map = context.map();
 
-            if (photo.longitude && photo.latitude) {
-                map.centerZoom([photo.longitude, photo.latitude], 19);
+            if (photo.location.longitude && photo.location.latitude) {
+                map.centerZoom([photo.location.longitude,
+                    photo.location.latitude], 19);
             }
             context.enter(iD.modes.Browse(context));
             context.container().classed("mode-browse", true);
@@ -62,9 +63,27 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
         photoEditor.select = function(entity) {
             var id = entity.id.substring(1);
-            var tag = ["osm:", entity.type, '=', id].join('');
+            var tag = ["osm:", entity.type, '=', id].join(''),
+                tags = [tag];
+
+            // check if there's already a tag for this entity
+            var existing = tags_wrap.selectAll('li')
+                .filter(function(d) {return d.raw == tag;});
+            if (!existing.empty()) {
+                existing
+                    .transition()
+                    .style('opacity', 0)
+                    .transition()
+                    .style('opacity', 100)
+                    .transition()
+                    .style('opacity', 0)
+                    .transition()
+                    .style('opacity', 100);
+                tags = [];
+            }
+
             var $tag = tags_wrap.selectAll('li.new')
-                .data([tag], function(d) {return d;});
+                .data(tags, function(d) {return d;});
             $tag.exit().remove();
 
             var li = $tag.enter()
@@ -76,12 +95,13 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 .attr('class', 'add')
                 .on('click', function(d) {
                     var self = this;
-                    d3.select(self).classed('loading', true);
+                    d3.select(self.parentNode).classed('loading', true);
                     context.flickr_connection().addTag(photo.id, tag, function() {
-                        d3.select(self)
+                        d3.select(self.parentNode)
                             .classed('loading', false)
                             .classed('done', true);
                         window.setTimeout(function() {
+                            d3.select(self).classed('new', false);
                             d3.select(self.parentNode).remove();
                             context.flickr_connection().getInfo(photo.id, loadPhoto);
                         }, 1000);
@@ -99,7 +119,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
         function showTags() {
             tags_wrap = d3.select('.inspector-body ul#tags');
             var $tags = tags_wrap.selectAll('li.old')
-                .data(tags, function(d) {return d.id;});
+                .data(tags, function(d) {return d.raw;});
             $tags.exit().remove();
             $tags.enter()
                 .insert('li', ':first-child')
@@ -108,7 +128,15 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 .append('a')
                 .attr('class', 'delete-x')
                 .on('click', function(d) {
-                    console.log(d);
+                    var self = this;
+                    d3.select(self.parentNode).classed('loading', true);
+                    context.flickr_connection().removeTag(d.id, function() {
+                        d3.select(self.parentNode)
+                            .transition()
+                            .style('width', "0px")
+                            .style('opacity', 0)
+                            .remove();
+                    });
                 })
                 .append('span')
                 .text('[x]');
