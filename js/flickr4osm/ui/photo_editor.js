@@ -31,7 +31,6 @@ flickr4osm.ui.PhotoEditor = function(context) {
         function loadPhoto(data) {
             var $body = selection.selectAll('.inspector-body')
                 .data([data], function(d) {return d.id;});
-            $body.exit().remove();
 
             // Enter
             $enter = $body.enter().append('div')
@@ -102,8 +101,10 @@ flickr4osm.ui.PhotoEditor = function(context) {
                             .classed('done', true);
                         window.setTimeout(function() {
                             d3.select(self).classed('new', false);
-                            d3.select(self.parentNode).remove();
-                            context.flickr_connection().getInfo(photo.id, loadPhoto);
+                            context.flickr_connection().getInfo(photo.id, function(data) {
+                                d3.select(self.parentNode).remove();
+                                loadPhoto(data);
+                            });
                         }, 1000);
                         photo.machine_tags.push(0);
                     });
@@ -150,6 +151,9 @@ flickr4osm.ui.PhotoEditor = function(context) {
             }).remove();
         }
 
+        var $body = selection.selectAll('.inspector-body')
+            .data([], function(d) {return d.id;});
+        $body.exit().remove();
         context.flickr_connection().getInfo(photo.id, loadPhoto);
     }
 
