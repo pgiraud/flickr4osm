@@ -14,6 +14,12 @@
 .photos-list-pane {
     overflow: auto;
 }
+.photos-list-pane .loading {
+    background-color: grey;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+}
 .photo-list-item {
     position: relative;
     margin-left: 4px;

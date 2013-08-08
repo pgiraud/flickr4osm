@@ -1,7 +1,8 @@
 flickr4osm.ui.PhotoList = function(context) {
     var event = d3.dispatch('choose'),
         photos = [],
-        list;
+        list,
+        loading = false;
 
     function photoList(selection) {
         var connection = context.flickr_connection();
@@ -16,11 +17,16 @@ flickr4osm.ui.PhotoList = function(context) {
         //var list = listWrap.append('div')
             //.attr('class', 'preset-list fillL cf')
             //.call(drawList);
+        var listLoading = listWrap.append('div')
+            .attr('class', 'loading')
+            .text('loading');
 
-        var page = null;
+        var page = 1;
 
         function drawList() {
+            loading = true;
             connection.getPhotos(page, function(data) {
+                listLoading.style('display', 'none');
 
                 photos = data.photo;
 
@@ -53,10 +59,25 @@ flickr4osm.ui.PhotoList = function(context) {
                 }).append('img')
                     .attr('class', 'machine-tag')
                     .attr('src', 'images/osm.png');
+
+                loading = false;
             });
         }
 
         connection.on('flickrauthenticated', function() {drawList();});
+
+        selection.on('scroll', function() {
+            if (!loading) {
+                if (this.scrollTop + this.offsetHeight >= this.scrollHeight) {
+                    page++;
+                    drawList();
+
+                    window.setTimeout(function() {
+                        listLoading.style('display', '');
+                    }, 100);
+                }
+            }
+        });
     }
 
     function updateList() {
