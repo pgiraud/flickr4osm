@@ -28,9 +28,9 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
         $enter.append('h3');
 
-        function loadPhoto(photo) {
+        function loadPhoto(data) {
             var $body = selection.selectAll('.inspector-body')
-                .data([photo], function(d) {return d.id;});
+                .data([data], function(d) {return d.id;});
             $body.exit().remove();
 
             // Enter
@@ -41,19 +41,19 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 .attr('class', 'photo');
 
             var img = container.append('img')
-                .attr('src', flickr4osm.util.getPhotoUrl(photo, 'n'));
+                .attr('src', flickr4osm.util.getPhotoUrl(data, 'n'));
 
             $enter.append('ul')
                 .attr('id', 'tags')
                 .attr('class', 'tags');
 
-            tags = photo.tags.tag;
+            tags = data.tags.tag;
 
             var map = context.map();
 
-            if (photo.location.longitude && photo.location.latitude) {
-                map.centerZoom([photo.location.longitude,
-                    photo.location.latitude], 19);
+            if (data.location.longitude && data.location.latitude) {
+                map.centerZoom([data.location.longitude,
+                    data.location.latitude], 19);
             }
             context.enter(iD.modes.Browse(context));
             context.container().classed("mode-browse", true);
@@ -105,6 +105,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
                             d3.select(self.parentNode).remove();
                             context.flickr_connection().getInfo(photo.id, loadPhoto);
                         }, 1000);
+                        photo.machine_tags.push(0);
                     });
                 })
                 .append('span')
@@ -136,6 +137,8 @@ flickr4osm.ui.PhotoEditor = function(context) {
                             .style('width', "0px")
                             .style('opacity', 0)
                             .remove();
+                        // update the photo so that tags are up-to-date in the list
+                        photo.machine_tags.pop();
                     });
                 })
                 .append('span')
@@ -150,7 +153,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
         context.flickr_connection().getInfo(photo.id, loadPhoto);
     }
 
-    photoEditor.photoId = function(_) {
+    photoEditor.photo = function(_) {
         photo = _;
         return photoEditor;
     };

@@ -30,6 +30,7 @@ flickr4osm.ui.Sidebar = function(context) {
         photoEditor.on('close', showList);
 
         function showList(preset) {
+            photoList.updateList();
             $wrap.transition()
                 .style('right', '-100%');
         }
@@ -39,7 +40,7 @@ flickr4osm.ui.Sidebar = function(context) {
                 .style('right', '0%');
 
             $editorPane.call(photoEditor
-                .photoId(photo));
+                .photo(photo));
         }
 
         sidebar.addTag = function(tag) {
