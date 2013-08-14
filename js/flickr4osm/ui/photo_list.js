@@ -95,5 +95,6 @@ flickr4osm.ui.PhotoList = function(context) {
 
     photoList.updateList = updateList;
 
+
     return d3.rebind(photoList, event, 'on');
 };
