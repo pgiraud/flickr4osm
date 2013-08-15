@@ -43,11 +43,11 @@ flickr4osm.ui = function(context) {
             .attr('class', 'map-control zoombuttons')
             .call(iD.ui.Zoom(context));
 
-        if (!context.embed()) {
-            controls.append('div')
-                .attr('class', 'map-control geocode-control')
-                .call(iD.ui.Geocoder(context));
-        }
+        //if (!context.embed()) {
+            //controls.append('div')
+                //.attr('class', 'map-control geocode-control')
+                //.call(iD.ui.Geocoder(context));
+        //}
 
         //var about = content.append('div')
             //.attr('class','col12 about-block fillD');
