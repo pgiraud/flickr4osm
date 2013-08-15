@@ -2,9 +2,9 @@ flickr4osm.Connection = function() {
 
     var event = d3.dispatch('flickrauthenticated', 'flickrauth'),
         connection = {},
-        API_KEY = 'e67a11ef8aa80cb9eea71071d29783c3',
         FLICKR_REST_URL = "http://www.flickr.com/services/rest/?",
         MD5 = new Hashes.MD5(),
+        API_KEY = flickr4osm.API_KEY,
         auth = flickrAuth({
             api_key: API_KEY,
             url: FLICKR_REST_URL,

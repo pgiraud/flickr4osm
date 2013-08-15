@@ -2,12 +2,11 @@ flickrAuth = function(o){
 
     var flickrAuth = {};
 
-    var SECRET = '72e7c46f724db031';
     var user, auth_token;
 
     // new MD5 instance
     flickrAuth.signature = function(o) {
-        var s = [SECRET];
+        var s = [flickr4osm.SECRET];
         var keys = Object.keys(o);
         keys.sort();
         var i = 0,
