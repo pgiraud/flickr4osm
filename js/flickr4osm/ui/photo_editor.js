@@ -64,6 +64,12 @@ flickr4osm.ui.PhotoEditor = function(context) {
             showTags();
         }
 
+        photoEditor.unselect = function() {
+            var $tag = tags_wrap.selectAll('li.new')
+                .data([]);
+            $tag.exit().remove();
+        };
+
         photoEditor.select = function(entity) {
             var id = entity.id.substring(1);
             var tag = ["osm:", entity.type, '=', id].join(''),

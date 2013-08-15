@@ -213,6 +213,7 @@ iD.modes.Select = function(context, selectedIDs) {
             .classed('selected', false);
 
         context.map().on('drawn.select', null);
+        context.ui().sidebar.editor.unselect();
     };
 
     return mode;
