@@ -69,8 +69,15 @@
     margin-right: 3px;
 }
 
+.photo-editor-pane .header {
+    height: 20px;
+}
+.photo-editor-pane .header h3 {
+    padding: 0;
+}
+
 .pane .inspector-body {
-    top: 60px;
+    top: 20px;
     padding: 5px;
 }
 .pane .inspector-body .photo {
