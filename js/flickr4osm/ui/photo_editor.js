@@ -48,7 +48,11 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
             tags = data.tags.tag;
 
+            $enter.append('p')
+                .text('Select an entity on the map to add a tag.');
+
             var map = context.map();
+
 
             if (data.location.longitude && data.location.latitude) {
                 map.centerZoom([data.location.longitude,
