@@ -116,6 +116,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
                                 loadPhoto(data);
                             });
                         }, 1000);
+                        // update the photo so that tags are up-to-date in the list
                         photo.machine_tags.push(0);
                     });
                 })

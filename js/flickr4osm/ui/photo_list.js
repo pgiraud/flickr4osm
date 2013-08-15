@@ -29,14 +29,15 @@ flickr4osm.ui.PhotoList = function(context) {
             connection.getPhotos(page, function(data) {
                 listLoading.style('display', 'none');
 
-                photos = data.photo;
-
                 // convert misc machine_tags to osm aware machine_tags
-                _.each(photos, function(photo) {
+                _.each(data.photo, function(photo) {
                     photo.machine_tags = _.filter(photo.machine_tags.split(','), function(tag) {
                         return tag.indexOf('osm') != -1;
                     });
                 });
+
+                photos = photos.concat(data.photo);
+
                 var items = list.selectAll('.photo-list-item')
                     .data(photos, function(d) { return d.id; });
 
@@ -49,12 +50,15 @@ flickr4osm.ui.PhotoList = function(context) {
                         return flickr4osm.util.getPhotoUrl(d, 's');
                     });
 
+
+                items.selectAll('img.geo').remove();
                 items.filter(function(d) {
                     return d.longitude && d.latitude;
                 }).append('img')
                     .attr('class', 'geo')
                     .attr('src', 'images/geo.png');
 
+                items.selectAll('img.machine-tag').remove();
                 items.filter(function(d) {
                     return d.machine_tags.length > 0;
                 }).append('img')
