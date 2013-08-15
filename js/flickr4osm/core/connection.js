@@ -22,6 +22,7 @@ flickr4osm.Connection = function() {
             auth_token = res.auth_token;
             user = res.user;
             event.flickrauth();
+            d3.select('#flickr_connect').remove();
             if (callback) callback(err, res);
         }
         return auth.authenticate(done);

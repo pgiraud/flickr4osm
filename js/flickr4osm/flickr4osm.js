@@ -192,7 +192,10 @@ window.flickr4osm = function () {
         dispatch.toggleFullscreen();
     };
 
-    flickr_connection.authenticate();
+    d3.select('#flickr_connect')
+        .on('click', function() {
+            flickr_connection.authenticate();
+        });
 
     return d3.rebind(context, dispatch, 'on');
 };

@@ -19,7 +19,8 @@ flickr4osm.ui.PhotoList = function(context) {
             //.call(drawList);
         var listLoading = listWrap.append('div')
             .attr('class', 'loading')
-            .text('loading');
+            .text('loading')
+            .style('display', 'none');
 
         var page = 1;
 
