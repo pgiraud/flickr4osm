@@ -54,10 +54,14 @@ flickr4osm.ui.PhotoEditor = function(context) {
             var map = context.map();
 
 
-            if (data.location.longitude && data.location.latitude) {
+            if (data.location && data.location.longitude && data.location.latitude) {
                 map.centerZoom([data.location.longitude,
                     data.location.latitude], 19);
+            } else {
+                $enter.append('p')
+                    .text('No location found for this photo');
             }
+
             context.enter(iD.modes.Browse(context));
             context.container().classed("mode-browse", true);
 
