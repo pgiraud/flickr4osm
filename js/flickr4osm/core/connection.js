@@ -34,7 +34,7 @@ flickr4osm.Connection = function() {
             api_key: API_KEY,
             auth_token: auth_token,
             user_id: user.nsid,
-            per_page: 48,
+            per_page: 24,
             page: page,
             method: 'flickr.people.getPhotos',
             format: 'json',

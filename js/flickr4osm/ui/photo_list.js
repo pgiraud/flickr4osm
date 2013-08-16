@@ -66,14 +66,17 @@ flickr4osm.ui.PhotoList = function(context) {
                     .attr('src', 'images/osm.png');
 
                 loading = false;
+
+                window.setTimeout(loadMore, 500);
             });
         }
 
         connection.on('flickrauthenticated', function() {drawList();});
 
-        selection.on('scroll', function() {
+        function loadMore() {
             if (!loading) {
-                if (this.scrollTop + this.offsetHeight >= this.scrollHeight) {
+                var list = selection.node();
+                if (list.scrollTop + list.offsetHeight >= list.scrollHeight) {
                     page++;
                     drawList();
 
@@ -82,6 +85,9 @@ flickr4osm.ui.PhotoList = function(context) {
                     }, 100);
                 }
             }
+        }
+        selection.on('scroll', function() {
+            loadMore();
         });
     }
 
