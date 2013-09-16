@@ -1,2 +1,2 @@
-flickr4osm.API_KEY = 'c08e1771b27808ba737c78af59dd9ab1';
-flickr4osm.SECRET = 'f0286860fb5ecc89';
+flickr4osm.API_KEY = 'e67a11ef8aa80cb9eea71071d29783c3';
+flickr4osm.SECRET = '72e7c46f724db031';
