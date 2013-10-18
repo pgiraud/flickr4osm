@@ -40,7 +40,11 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 .attr('class', 'photo');
 
             var img = container.append('img')
-                .attr('src', flickr4osm.util.getPhotoUrl(data, 'n'));
+                .attr('src', flickr4osm.util.getPhotoUrl(data, 'n'))
+                .style('cursor', 'pointer')
+                .on('click', function(d) {
+                    window.open(flickr4osm.util.getPhotoUrl(data, 'b'));
+                });
 
             $enter.append('ul')
                 .attr('id', 'tags')
