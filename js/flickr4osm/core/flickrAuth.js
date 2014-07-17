@@ -50,7 +50,7 @@ flickrAuth = function(o){
         var MD5 = new Hashes.MD5();
         params.api_sig = MD5.hex(signature);
 
-        window.open('http://www.flickr.com/services/auth/?' + serialize(params),
+        window.open('https://www.flickr.com/services/auth/?' + serialize(params),
             '_blank');
 
         flickrAuth.getToken = function(frob) {
