@@ -163,3 +163,6 @@
     stroke-width: 1;
     fill: #7CB4FF;
 }
+.layer-flickr4osm {
+    pointer-events: none;
+}
