@@ -174,6 +174,9 @@ flickr4osm.ui.PhotoEditor = function(context) {
             .data([], function(d) {return d.id;});
         $body.exit().remove();
         context.flickr_connection().getInfo(photo.id, loadPhoto);
+        context.flickr_connection().getExif(photo.id, function(data) {
+            console.log (data);
+        });
     }
 
     photoEditor.photo = function(_) {
