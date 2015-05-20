@@ -34,7 +34,6 @@ flickr4osm.ui.PhotoEditor = function(context) {
 
         // create the flickr4osm layer
         var supersurface = context.container().select('#supersurface');
-        //supersurface.call(function(selection) {
         var div = supersurface.selectAll('.layer-flickr4osm').data([0]);
         div.enter().insert('div')
             .attr('class', 'layer-layer layer-flickr4osm');
