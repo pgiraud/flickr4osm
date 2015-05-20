@@ -105,12 +105,19 @@ flickr4osm.ui.PhotoEditor = function(context) {
             var container = $enter.append('div')
                 .attr('class', 'photo');
 
-            var img = container.append('img')
+            container.append('img')
                 .attr('src', flickr4osm.util.getPhotoUrl(data, 'n'))
                 .style('cursor', 'pointer')
+                .attr('title', 'Click to display in bigger size')
                 .on('click', function(d) {
                     window.open(flickr4osm.util.getPhotoUrl(data, 'b'));
                 });
+
+            container.append('p')
+                .append('a')
+                .text('Edit in Flickr')
+                .attr('href', flickr4osm.util.getPhotoPageUrl(data))
+                .attr('target', '_blank');
 
             $enter.append('ul')
                 .attr('id', 'tags')
