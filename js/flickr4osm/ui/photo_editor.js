@@ -136,14 +136,18 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 map.centerZoom([data.location.longitude,
                     data.location.latitude], 19);
 
-                data.direction = getDirection(exif);
 
                 var enter = marker.enter().append('g')
                     .attr('class', 'picture');
 
-                enter.append('path')
-                        .attr('transform', 'translate(-8, -13)')
-                        .attr('d', 'M 2,7 C 7,4 9,4 14,7 L 8,0 z');
+                var direction = getDirection(exif);
+                if (direction) {
+                    data.direction = direction;
+
+                    enter.append('path')
+                            .attr('transform', 'translate(-8, -13)')
+                            .attr('d', 'M 2,7 C 7,4 9,4 14,7 L 8,0 z');
+                }
 
                 enter.append('circle')
                     .attr('dx', '0')
