@@ -66,6 +66,23 @@ flickr4osm.Connection = function() {
         });
     };
 
+    connection.getExif = function(photo, callback) {
+        var o = {
+            api_key: API_KEY,
+            auth_token: auth_token,
+            method: 'flickr.photos.getExif',
+            photo_id: photo,
+            format: 'json',
+            nojsoncallback: 1
+        };
+        var signature = auth.signature(o);
+        o.api_sig = MD5.hex(signature);
+
+        $.getJSON(FLICKR_REST_URL + $.param(o), function(data) {
+            callback(data.photo);
+        });
+    };
+
     connection.addTag = function(photo, tag, callback) {
         var o = {
             api_key: API_KEY,

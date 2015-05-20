@@ -156,3 +156,13 @@
 .radial-menu-tooltip {
     width: 300px;
 }
+
+/* map marker */
+.layer-flickr4osm g * {
+    stroke: #444;
+    stroke-width: 1;
+    fill: #7CB4FF;
+}
+.layer-flickr4osm {
+    pointer-events: none;
+}

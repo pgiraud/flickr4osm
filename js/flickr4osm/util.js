@@ -10,6 +10,20 @@ flickr4osm.util = {
      *
      * Parameters:
      * photo - {Object} the photo
+     */
+    getPhotoPageUrl: function(photo) {
+        var url = 'https://www.flickr.com/photos/{user}/{photo}';
+        return flickr4osm.util.format(url, {
+            user: photo.owner.nsid,
+            photo: photo.id
+        });
+    },
+
+    /**
+     * Utility function to build a flickr url for a photo
+     *
+     * Parameters:
+     * photo - {Object} the photo
      * size - {String} Either 'm', 's', 't', 'z', 'b'. Size of the photo. See
      *     http://www.flickr.com/services/api/misc.urls.html
      */

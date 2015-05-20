@@ -2,6 +2,7 @@ flickr4osm.ui.PhotoEditor = function(context) {
     var event = d3.dispatch('close'),
         photo,
         tags,
+        layer,
         tags_wrap;
 
     function photoEditor(selection) {
@@ -23,12 +24,76 @@ flickr4osm.ui.PhotoEditor = function(context) {
                 // it would be better to have a better browse mode
                 iD.modes.Browse(context).exit();
                 context.container().classed("mode-browse", false);
+                layer.selectAll('g.picture').data([]).exit().remove();
                 event.close();
             });
 
         $enter.append('h3');
 
+        var map = context.map();
+
+        // create the flickr4osm layer
+        var supersurface = context.container().select('#supersurface');
+        var div = supersurface.selectAll('.layer-flickr4osm').data([0]);
+        div.enter().insert('div')
+            .attr('class', 'layer-layer layer-flickr4osm');
+        var layer = div.selectAll('svg').data([0]);
+        layer.enter().append('svg');
+        layer.dimensions(map.dimensions());
+
+        // resize the flickr4osm layer when window size changes
+        d3.select(window).on('resize.editor', function() {
+            layer.dimensions(map.dimensions());
+        });
+
+
+        var timeoutId;
+        function queueRedraw() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(function() { redraw(); }, 300);
+        }
+
+        function redraw() {
+            layer.selectAll('g')
+                .attr('transform', transform);
+        }
+
+        context.map().on('move', function() {
+            queueRedraw();
+        });
+
+        // move the marker to actual location
+        // also apply rotation if available
+        function transform(picture) {
+            if (!picture.location) {
+                return '';
+            }
+            var point = [picture.location.longitude, picture.location.latitude];
+            var t = 'translate(' + context.projection(point) + ')';
+            if (picture.direction) t += 'rotate(' + picture.direction + ',0,0)';
+            return t;
+        }
+
         function loadPhoto(data) {
+            context.flickr_connection().getExif(photo.id, function(exif) {
+                exifLoaded(data, exif);
+            });
+        }
+
+        function getDirection(exif) {
+            exif = exif.exif;
+            var direction;
+            exif.every(function(item) {
+                if (item.tag == "GPSDestBearing") {
+                    direction  = item.raw._content;
+                    return false;
+                }
+                return true;
+            });
+            return direction;
+        }
+
+        function exifLoaded(data, exif) {
             var $body = selection.selectAll('.inspector-body')
                 .data([data], function(d) {return d.id;});
 
@@ -39,12 +104,19 @@ flickr4osm.ui.PhotoEditor = function(context) {
             var container = $enter.append('div')
                 .attr('class', 'photo');
 
-            var img = container.append('img')
+            container.append('img')
                 .attr('src', flickr4osm.util.getPhotoUrl(data, 'n'))
                 .style('cursor', 'pointer')
+                .attr('title', 'Click to display in bigger size')
                 .on('click', function(d) {
                     window.open(flickr4osm.util.getPhotoUrl(data, 'b'));
                 });
+
+            container.append('p')
+                .append('a')
+                .text('Edit in Flickr')
+                .attr('href', flickr4osm.util.getPhotoPageUrl(data))
+                .attr('target', '_blank');
 
             $enter.append('ul')
                 .attr('id', 'tags')
@@ -55,12 +127,29 @@ flickr4osm.ui.PhotoEditor = function(context) {
             $enter.append('p')
                 .text('Select an entity on the map to add a tag.');
 
-            var map = context.map();
 
+            // display marker on map
+            var marker = layer.selectAll('g.picture')
+                .data([data], function(d) {return d.id;});
 
             if (data.location && data.location.longitude && data.location.latitude) {
                 map.centerZoom([data.location.longitude,
                     data.location.latitude], 19);
+
+                data.direction = getDirection(exif);
+
+                var enter = marker.enter().append('g')
+                    .attr('class', 'picture');
+
+                enter.append('path')
+                        .attr('transform', 'translate(-8, -13)')
+                        .attr('d', 'M 2,7 C 7,4 9,4 14,7 L 8,0 z');
+
+                enter.append('circle')
+                    .attr('dx', '0')
+                    .attr('dy', '0')
+                    .attr('r', '6');
+                marker.attr('transform', transform);
             } else {
                 $enter.append('p')
                     .text('No location found for this photo');
@@ -70,6 +159,8 @@ flickr4osm.ui.PhotoEditor = function(context) {
             context.container().classed("mode-browse", true);
 
             showTags();
+
+            marker.exit().remove();
         }
 
         photoEditor.unselect = function() {
