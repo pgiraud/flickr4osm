@@ -1,26 +1,47 @@
 window.flickr4osm = function () {
-
-    
-
     window.locale.en = iD.data.en;
     window.locale.current('en');
 
     var context = {},
         storage;
 
-    // https://github.com/systemed/iD/issues/772
+    // https://github.com/openstreetmap/iD/issues/772
     // http://mathiasbynens.be/notes/localstorage-pattern#comment-9
     try { storage = localStorage; } catch (e) {}
-    storage = storage || {};
+    storage = storage || (function() {
+        var s = {};
+        return {
+            getItem: function(k) { return s[k]; },
+            setItem: function(k, v) { s[k] = v; },
+            removeItem: function(k) { delete s[k]; }
+        };
+    })();
 
     context.storage = function(k, v) {
-        if (arguments.length === 1) return storage[k];
-        else if (v === null) delete storage[k];
-        else storage[k] = v;
+        try {
+            if (arguments.length === 1) return storage.getItem(k);
+            else if (v === null) storage.removeItem(k);
+            else storage.setItem(k, v);
+        } catch(e) {
+            // localstorage quota exceeded
+            /* jshint devel:true */
+            if (typeof console !== 'undefined') console.error('localStorage quota exceeded');
+            /* jshint devel:false */
+        }
+    };
+
+    /* Accessor for setting minimum zoom for editing features. */
+
+    var minEditableZoom = 16;
+    context.minEditableZoom = function(_) {
+        if (!arguments.length) return minEditableZoom;
+        minEditableZoom = _;
+        connection.tileZoom(_);
+        return context;
     };
 
     var history = iD.History(context),
-        dispatch = d3.dispatch('enter', 'exit', 'toggleFullscreen'),
+        dispatch = d3.dispatch('enter', 'exit'),
         mode,
         container,
         ui = flickr4osm.ui(context),
@@ -29,14 +50,9 @@ window.flickr4osm = function () {
         locale = iD.detect().locale,
         localePath;
 
-
     if (locale && iD.data.locales.indexOf(locale) === -1) {
         locale = locale.split('-')[0];
     }
-
-    connection.on('load.context', function loadContext(err, result) {
-        history.merge(result.data, result.extent);
-    });
 
     context.preauth = function(options) {
         connection.switch(options);
@@ -68,22 +84,95 @@ window.flickr4osm = function () {
     context.flickr_connection = function() { return flickr_connection; };
     context.history = function() { return history; };
 
+    /* Connection */
+    function entitiesLoaded(err, result) {
+        if (!err) history.merge(result.data, result.extent);
+    }
+
+    context.loadTiles = function(projection, dimensions, callback) {
+        function done(err, result) {
+            entitiesLoaded(err, result);
+            if (callback) callback(err, result);
+        }
+        connection.loadTiles(projection, dimensions, done);
+    };
+
+    context.loadEntity = function(id, callback) {
+        function done(err, result) {
+            entitiesLoaded(err, result);
+            if (callback) callback(err, result);
+        }
+        connection.loadEntity(id, done);
+    };
+
+    context.zoomToEntity = function(id, zoomTo) {
+        if (zoomTo !== false) {
+            this.loadEntity(id, function(err, result) {
+                if (err) return;
+                var entity = _.find(result.data, function(e) { return e.id === id; });
+                if (entity) { map.zoomTo(entity); }
+            });
+        }
+
+        map.on('drawn.zoomToEntity', function() {
+            if (!context.hasEntity(id)) return;
+            map.on('drawn.zoomToEntity', null);
+            context.on('enter.zoomToEntity', null);
+            context.enter(iD.modes.Select(context, [id]));
+        });
+
+        context.on('enter.zoomToEntity', function() {
+            if (mode.id !== 'browse') {
+                map.on('drawn.zoomToEntity', null);
+                context.on('enter.zoomToEntity', null);
+            }
+        });
+    };
+
     /* History */
     context.graph = history.graph;
-    context.perform = history.perform;
-    context.replace = history.replace;
-    context.pop = history.pop;
-    context.undo = history.undo;
-    context.redo = history.redo;
     context.changes = history.changes;
     context.intersects = history.intersects;
 
+    var inIntro = false;
+
+    context.inIntro = function(_) {
+        if (!arguments.length) return inIntro;
+        inIntro = _;
+        return context;
+    };
+
+    context.save = function() {
+        if (inIntro || (mode && mode.id === 'save')) return;
+        history.save();
+        if (history.hasChanges()) return t('save.unsaved_changes');
+    };
+
     context.flush = function() {
+        features.reset();
         history.reset();
         connection.flush();
         map.redraw();
         return context;
     };
+
+    // Debounce save, since it's a synchronous localStorage write,
+    // and history changes can happen frequently (e.g. when dragging).
+    var debouncedSave = _.debounce(context.save, 350);
+    function withDebouncedSave(fn) {
+        return function() {
+            var result = fn.apply(history, arguments);
+            debouncedSave();
+            return result;
+        };
+    }
+
+    context.perform = withDebouncedSave(history.perform);
+    context.replace = withDebouncedSave(history.replace);
+    context.pop = withDebouncedSave(history.pop);
+    context.overwrite = withDebouncedSave(history.overwrite);
+    context.undo = withDebouncedSave(history.undo);
+    context.redo = withDebouncedSave(history.redo);
 
     /* Graph */
     context.hasEntity = function(id) {
@@ -135,38 +224,78 @@ window.flickr4osm = function () {
         context.surface().call(behavior.off);
     };
 
+    /* Copy/Paste */
+    var copyIDs = [], copyGraph;
+    context.copyGraph = function() { return copyGraph; };
+    context.copyIDs = function(_) {
+        if (!arguments.length) return copyIDs;
+        copyIDs = _;
+        copyGraph = history.graph();
+        return context;
+    };
+
     /* Projection */
-    context.projection = d3.geo.mercator()
-        .scale(512 / Math.PI)
-        .precision(0);
+    context.projection = iD.geo.RawMercator();
 
     /* Background */
     var background = iD.Background(context);
     context.background = function() { return background; };
+
+    /* Features */
+    var features = iD.Features(context);
+    context.features = function() { return features; };
+    context.hasHiddenConnections = function(id) {
+        var graph = history.graph(),
+            entity = graph.entity(id);
+        return features.hasHiddenConnections(entity, graph);
+    };
 
     /* Map */
     var map = iD.Map(context);
     context.map = function() { return map; };
     context.layers = function() { return map.layers; };
     context.surface = function() { return map.surface; };
+    context.editable = function() { return map.editable(); };
     context.mouse = map.mouse;
     context.extent = map.extent;
     context.pan = map.pan;
     context.zoomIn = map.zoomIn;
     context.zoomOut = map.zoomOut;
 
-    /* Presets */
-    var presets = iD.presets()
-        .load(iD.data.presets);
+    context.surfaceRect = function() {
+        // Work around a bug in Firefox.
+        //   http://stackoverflow.com/questions/18153989/
+        //   https://bugzilla.mozilla.org/show_bug.cgi?id=530985
+        return context.surface().node().parentNode.getBoundingClientRect();
+    };
 
-    context.presets = function() {
-        return presets;
+    /* Presets */
+    var presets = iD.presets();
+
+    context.presets = function(_) {
+        if (!arguments.length) return presets;
+        presets.load(_);
+        iD.areaKeys = presets.areaKeys();
+        return context;
+    };
+
+    context.imagery = function(_) {
+        background.load(_);
+        return context;
     };
 
     context.container = function(_) {
         if (!arguments.length) return container;
         container = _;
         container.classed('id-container', true);
+        return context;
+    };
+
+    /* Taginfo */
+    var taginfo;
+    context.taginfo = function(_) {
+        if (!arguments.length) return taginfo;
+        taginfo = _;
         return context;
     };
 
@@ -184,12 +313,16 @@ window.flickr4osm = function () {
         return context;
     };
 
-    context.imagePath = function(_) {
-        return assetPath + 'img/' + _;
+    var assetMap = {};
+    context.assetMap = function(_) {
+        if (!arguments.length) return assetMap;
+        assetMap = _;
+        return context;
     };
 
-    context.toggleFullscreen = function() {
-        dispatch.toggleFullscreen();
+    context.imagePath = function(_) {
+        var asset = 'img/' + _;
+        return assetMap[asset] || assetPath + asset;
     };
 
     d3.select('#flickr_connect')

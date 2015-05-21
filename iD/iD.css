@@ -253,10 +253,22 @@ g.vertex.shared .stroke {
 }
 
 g.midpoint .fill {
-    fill: #ddd;
-    stroke: black;
-    stroke-opacity: .5;
-    opacity: .5;
+    fill: #eee;
+    stroke: #444;
+    stroke-opacity: .6;
+    opacity: .7;
+}
+
+g.midpoint.tag-highway-pedestrian .fill,
+g.midpoint.tag-highway-steps .fill,
+g.midpoint.tag-highway-path .fill,
+g.midpoint.tag-highway-footway .fill,
+g.midpoint.tag-highway-cycleway .fill,
+g.midpoint.tag-highway-bridleway .fill {
+    fill: #fff;
+    stroke: #333;
+    stroke-opacity: .8;
+    opacity: .8;
 }
 
 g.vertex .shadow,
@@ -321,240 +333,282 @@ path.shadow.selected {
     stroke-opacity: 0.7;
 }
 
-path.area.stroke {
-    stroke: white;
-    stroke-width: 1;
-}
-
-path.area.fill {
-    fill:#fff;
-    fill-opacity:0.3;
-    fill-rule: evenodd;
-}
-
 path.line.stroke {
     stroke: white;
     stroke-width: 2;
 }
 
+path.area.stroke {
+    stroke: white;
+    stroke-width: 1;
+}
+path.area.fill {
+    stroke-width: 0;
+    stroke: rgba(255, 255, 255, 0.3);
+    fill: rgba(255, 255, 255, 0.3);
+    fill-rule: evenodd;
+}
+.preset-icon-fill-area {
+    border: 1px solid rgb(170, 170, 170);
+    background-color: rgba(170, 170, 170, 0.3);
+}
+
 path.stroke.tag-natural {
-    stroke: #b6e199;
+    stroke: rgb(182, 225, 153);
 }
 path.fill.tag-natural {
-    fill: #b6e199;
+    stroke: rgba(182, 225, 153, 0.3);
+    fill: rgba(182, 225, 153, 0.3);
 }
-
-path.stroke.tag-natural-water {
-    stroke: #77d3de;
+.preset-icon-fill-area.tag-natural {
+    border-color: rgb(182, 225, 153);
+    background-color: rgba(182, 225, 153, 0.3);
 }
-path.fill.tag-natural-water {
-    fill: #77d3de;
-}
-
-path.stroke.tag-amenity-school {
-    stroke: #ffff94;
-}
-path.fill.tag-amenity-school {
-    fill: #ffff94;
-    fill-opacity: 0.2;
-}
-
-path.stroke.tag-amenity-university {
-    stroke: #ffff94;
-}
-path.fill.tag-amenity-university {
-    fill: #ffff94;
-    fill-opacity: 0.1;
-}
-
-path.stroke.tag-building {
-    stroke: #e06e5f;
-}
-path.fill.tag-building {
-    fill: #e06e5f;
-}
-
-/* Landuse */
-
 
 path.stroke.tag-landuse,
 path.stroke.tag-natural-wood,
 path.stroke.tag-natural-tree,
 path.stroke.tag-natural-grassland,
+path.stroke.tag-natural-grass,
+path.stroke.tag-leisure-nature_reserve,
 path.stroke.tag-leisure-pitch,
 path.stroke.tag-leisure-park {
-    stroke: #8cd05f;
+    stroke: rgb(140, 208, 95);
 }
-
-path.stroke.tag-landuse-residential {
-    stroke: #e06e5f;
-}
-
-path.stroke.tag-landuse-retail,
-path.stroke.tag-landuse-commercial {
-    stroke: #eab056;
-}
-
-path.stroke.tag-landuse-industrial {
-    stroke: #e4a4f5;
-}
-
-path.stroke.tag-landuse-basin,
-path.stroke.tag-landuse-reservoir {
-    stroke: #77d3de;
-}
-
-path.stroke.tag-landuse-quarry {
-    stroke: #a6957b;
-}
-
-path.stroke.tag-landuse-residential,
-path.stroke.tag-landuse-construction {
-    stroke: #e06e5f;
-}
-
-path.stroke.tag-landuse-meadow,
-path.stroke.tag-natural-wetland {
-    stroke: #b6e199;
-}
-
-path.stroke.tag-natural-beach {
-    stroke: #ffff7e;
-}
-
-path.stroke.tag-natural-scrub {
-    stroke: #dbf08b;
-}
-
 path.fill.tag-landuse,
 path.fill.tag-natural-wood,
 path.fill.tag-natural-tree,
 path.fill.tag-natural-grassland,
 path.fill.tag-natural-grass,
+path.fill.tag-leisure-nature_reserve,
 path.fill.tag-leisure-pitch,
 path.fill.tag-leisure-park {
-    fill: #8cd05f;
-    fill-opacity: 0.2;
+    stroke: rgba(140, 208, 95, 0.3);
+    fill: rgba(140, 208, 95, 0.3);
+}
+.preset-icon-fill-area.tag-landuse,
+.preset-icon-fill-area.tag-natural-wood,
+.preset-icon-fill-area.tag-natural-tree,
+.preset-icon-fill-area.tag-natural-grassland,
+.preset-icon-fill-area.tag-natural-grass,
+.preset-icon-fill-area.tag-leisure-nature_reserve,
+.preset-icon-fill-area.tag-leisure-pitch,
+.preset-icon-fill-area.tag-leisure-park {
+    border-color: rgb(140, 208, 95);
+    background-color: rgba(140, 208, 95, 0.3);
 }
 
-path.fill.tag-landuse-retail,
-path.fill.tag-landuse-residential,
-path.fill.tag-landuse-commercial,
-path.fill.tag-landuse-industrial {
-    fill-opacity: 0.1;
+path.stroke.tag-natural-water,
+path.stroke.tag-landuse-basin,
+path.stroke.tag-landuse-reservoir {
+    stroke: rgb(119, 211, 222);
 }
-
-path.fill.tag-natural-wetland,
-path.fill.tag-natural-beach,
-path.fill.tag-natural-scrub,
-path.fill.tag-landuse-cemetery,
-path.fill.tag-landuse-meadow,
-path.fill.tag-landuse-farm,
-path.fill.tag-landuse-farmland,
-path.fill.tag-landuse-construction,
-path.fill.tag-landuse-orchard {
-    /* background color is applied a further opacity later */
-    fill-opacity: 0.8;
-}
-
-.pattern-color-beach,
-.pattern-color-scrub,
-.pattern-color-meadow,
-.pattern-color-wetland,
-.pattern-color-cemetery,
-.pattern-color-farm,
-.pattern-color-farmland,
-.pattern-color-construction,
-.pattern-color-orchard {
-    fill-opacity: 0.2;
-}
-
 path.fill.tag-landuse-basin,
-path.fill.tag-landuse-reservoir {
-    fill: #77d3de;
+path.fill.tag-landuse-reservoir,
+path.fill.tag-natural-water {
+    stroke: rgba(119, 211, 222, 0.3);
+    fill: rgba(119, 211, 222, 0.3);
+}
+.preset-icon-fill-area.tag-landuse-basin,
+.preset-icon-fill-area.tag-landuse-reservoir,
+.preset-icon-fill-area.tag-natural-water {
+    border-color: rgb(119, 211, 222);
+    background-color: rgba(119, 211, 222, 0.3);
 }
 
-path.fill.tag-landuse-quarry {
-    fill: #a6957b;
+path.stroke.tag-amenity-childcare,
+path.stroke.tag-amenity-kindergarten,
+path.stroke.tag-amenity-school,
+path.stroke.tag-amenity-college,
+path.stroke.tag-amenity-university {
+    stroke: rgb(255, 255, 148);
+}
+path.fill.tag-amenity-childcare,
+path.fill.tag-amenity-kindergarten,
+path.fill.tag-amenity-school,
+path.fill.tag-amenity-college,
+path.fill.tag-amenity-university {
+    stroke: rgba(255, 255, 148, 0.15);
+    fill: rgba(255, 255, 148, 0.15);
+}
+.preset-icon-fill-area.tag-amenity-childcare,
+.preset-icon-fill-area.tag-amenity-kindergarten,
+.preset-icon-fill-area.tag-amenity-school,
+.preset-icon-fill-area.tag-amenity-college,
+.preset-icon-fill-area.tag-amenity-university {
+    border-color: rgb(255, 255, 148);
+    background-color: rgba(255, 255, 148, 0.15);
 }
 
+path.stroke.tag-landuse-residential {
+    stroke: rgb(196, 189, 25);
+}
 path.fill.tag-landuse-residential {
-    fill: #e06e5f;
+    stroke: rgba(196, 189, 25, 0.3);
+    fill: rgba(196, 189, 25, 0.3);
+}
+.preset-icon-fill-area.tag-landuse-residential {
+    border-color: rgb(196, 189, 25);
+    background: none;
+    box-shadow: inset 0 0 0 5px rgba(196, 189, 25, 0.3);
 }
 
-path.fill.tag-landuse-farm,
-path.fill.tag-landuse-farmland {
-    fill: url(#pattern-farmland) #8cd05f;
+path.stroke.tag-landuse-retail,
+path.stroke.tag-landuse-commercial {
+    stroke: rgb(214, 136, 26);
+}
+path.fill.tag-landuse-retail,
+path.fill.tag-landuse-commercial {
+    stroke: rgba(214, 136, 26, 0.3);
+    fill: rgba(214, 136, 26, 0.3);
+}
+.preset-icon-fill-area.tag-landuse-retail,
+.preset-icon-fill-area.tag-landuse-commercial {
+    border-color: rgb(214, 136, 26);
+    background: none;
+    box-shadow: inset 0 0 0 5px rgba(214, 136, 26, 0.3);
+}
+
+path.stroke.tag-landuse-industrial {
+    stroke: rgb(228, 164, 245);
+}
+path.fill.tag-landuse-industrial {
+    stroke: rgba(228, 164, 245, 0.3);
+    fill: rgba(228, 164, 245, 0.3);
+}
+.preset-icon-fill-area.tag-landuse-industrial {
+    border-color: rgb(228, 164, 245);
+    background: none;
+    box-shadow: inset 0 0 0 5px rgba(228, 164, 245, 0.3);
+}
+
+path.stroke.tag-landuse-quarry {
+    stroke: rgb(166, 149, 123);
+}
+path.fill.tag-landuse-quarry {
+    stroke: rgba(166, 149, 123, 0.2);
+    fill: rgba(166, 149, 123, 0.2);
+}
+.preset-icon-fill-area.tag-landuse-quarry {
+    border-color: rgb(166, 149, 123);
+    background-color: rgba(166, 149, 123, 0.2);
+}
+
+path.stroke.tag-landuse-landfill {
+    stroke: rgb(255, 153, 51);
+}
+path.fill.tag-landuse-landfill {
+    stroke: rgba(255, 153, 51, 0.2);
+    fill: rgba(255, 153, 51, 0.2);
+}
+.preset-icon-fill-area.tag-landuse-landfill {
+    border-color: rgb(255, 153, 51);
+    background-color: rgba(255, 153, 51, 0.2);
+}
+
+.pattern-color-construction {
+    fill: rgba(196, 189, 25, 0.2);
+}
+path.stroke.tag-landuse-construction {
+    stroke: rgb(196, 189, 25);
+}
+.preset-icon-fill-area.tag-landuse-construction {
+    border-color: rgb(196, 189, 25);
+    background-color: rgba(196, 189, 25, 0.2);
+}
+
+path.stroke.tag-landuse-military {
+    stroke: rgb(214, 136, 26);
+}
+path.fill.tag-landuse-military {
+    stroke: rgba(214, 136, 26, 0.2);
+    fill: rgba(214, 136, 26, 0.2);
+}
+.preset-icon-fill-area.tag-landuse-military {
+    border-color: rgb(214, 136, 26);
+    background-color: rgba(214, 136, 26, 0.2);
+}
+
+.pattern-color-wetland {
+    fill: rgba(182, 225, 153, 0.2);
+}
+path.stroke.tag-natural-wetland {
+    stroke: rgb(182, 225, 153);
+}
+.preset-icon-fill-area.tag-natural-wetland {
+    border-color: rgb(182, 225, 153);
+    background-color: rgba(182, 225, 153, 0.2);
+}
+
+.pattern-color-meadow {
+    fill: rgba(182, 225, 153, 0.2);
+}
+path.stroke.tag-landuse-meadow {
+    stroke: rgb(182, 225, 153);
+}
+.preset-icon-fill-area.tag-landuse-meadow {
+    border-color: rgb(182, 225, 153);
+    background-color: rgba(182, 225, 153, 0.2);
+}
+
+.pattern-color-beach {
+    fill: rgba(255, 255, 126, 0.2);
+}
+path.stroke.tag-natural-beach {
+    stroke: rgb(255, 255, 126);
+}
+.preset-icon-fill-area.tag-natural-beach {
+    border-color: rgb(255, 255, 126);
+    background-color: rgba(255, 255, 126, 0.2);
+}
+
+.pattern-color-scrub {
+    fill: rgba(219, 240, 139, 0.2);
+}
+path.stroke.tag-natural-scrub {
+    stroke: rgb(219, 240, 139);
+}
+.preset-icon-fill-area.tag-natural-scrub {
+    border-color: rgb(219, 240, 139);
+    background-color: rgba(219, 240, 139, 0.2);
 }
 
 .pattern-color-farm,
 .pattern-color-farmland {
-    fill: url(#pattern-farmland) #8cd05f;
+    fill: rgba(140, 208, 95, 0.2);
+}
+path.stroke.tag-landuse-farm,
+path.stroke.tag-landuse-farmland {
+    stroke: rgb(140, 208, 95);
+}
+.preset-icon-fill-area.tag-landuse-farm,
+.preset-icon-fill-area.tag-landuse-farmland {
+    background-color: rgba(140, 208, 95, 0.2);
 }
 
-path.fill.tag-landuse-meadow {
-    fill: url(#pattern-meadow) #b6e199;
-}
-.pattern-color-meadow {
-    fill: #b6e199;
-}
-
-path.fill.tag-natural-wetland {
-    fill: url(#pattern-wetland) #b6e199;
-}
-.pattern-color-wetland {
-    fill: #B6E199;
-}
-
-path.fill.tag-natural-beach {
-    fill: url(#pattern-beach) #ffff7e;
-}
-.pattern-color-beach {
-    fill: #ffff7e;
-}
-
-path.fill.tag-natural-scrub {
-    fill: url(#pattern-scrub) #dbf08b;
-}
-.pattern-color-scrub {
-    fill: #dbf08b;
-}
-
-path.fill.tag-landuse-cemetery {
-    fill: url(#pattern-cemetery) #8cd05f;
-}
-.pattern-color-cemetery {
-    fill: #8cd05f
-}
-
-path.fill.tag-landuse-orchard {
-    fill: url(#pattern-orchard) #8cd05f;
-}
+.pattern-color-cemetery,
 .pattern-color-orchard {
-    fill: #8cd05f
+    fill: rgba(140, 208, 95, 0.2);
 }
-
-path.fill.tag-landuse-construction {
-    fill: url(#pattern-construction) #e06e5f;
+path.stroke.tag-landuse-cemetery,
+path.stroke.tag-landuse-orchard {
+    stroke: rgb(140, 208, 95);
 }
-.pattern-color-construction {
-    fill: #e06e5f;
-}
-
-path.fill.tag-landuse-retail,
-path.fill.tag-landuse-commercial {
-    fill: #eab056;
-}
-
-path.fill.tag-landuse-industrial {
-    fill: #e4a4f5;
+.preset-icon-fill-area.tag-landuse-cemetery,
+.preset-icon-fill-area.tag-landuse-orchard {
+    background-color: rgba(140, 208, 95, 0.2);
 }
 
 path.stroke.tag-amenity-parking {
-    stroke: #aaa;
+    stroke: rgb(170, 170, 170);
 }
 path.fill.tag-amenity-parking {
-    fill: #aaa;
+    stroke: rgba(170, 170, 170, 0.3);
+    fill: rgba(170, 170, 170, 0.3);
+}
+.preset-icon-fill-area.tag-amenity-parking {
+    border-color: rgb(170, 170, 170);
+    background-color: rgba(170, 170, 170, 0.3);
 }
 
 path.fill.tag-place,
@@ -576,13 +630,13 @@ path.stroke.tag-highway {
     stroke-width:8;
 }
 
-svg[data-zoom="16"] path.shadow.tag-highway {
+.low-zoom path.shadow.tag-highway {
     stroke-width:12;
 }
-svg[data-zoom="16"] path.casing.tag-highway {
+.low-zoom path.casing.tag-highway {
     stroke-width:6;
 }
-svg[data-zoom="16"] path.stroke.tag-highway {
+.low-zoom path.stroke.tag-highway {
     stroke-width:4;
 }
 
@@ -669,22 +723,19 @@ path.casing.tag-highway-living_street {
     stroke-width:6;
 }
 
-path.stroke.line.tag-highway-pedestrian {
+path.stroke.tag-highway-pedestrian {
     stroke:#fff;
     stroke-dasharray: 2, 8;
-    stroke-width:4 !important;
-    shapeRendering: auto;
+    stroke-width:4;
 }
-path.casing.line.tag-highway-pedestrian {
+path.casing.tag-highway-pedestrian {
     stroke:#8cd05f;
-    stroke-width:6 !important;
+    stroke-width:6;
 }
 path.stroke.area.tag-highway-pedestrian {
     stroke:#fff;
+    stroke-dasharray: none;
     stroke-width: 2;
-}
-path.fill.area.tag-highway-pedestrian {
-    fill:#ccc;
 }
 
 path.stroke.tag-highway-service {
@@ -695,10 +746,10 @@ path.casing.tag-highway-service {
     stroke:#666;
     stroke-width:6;
 }
-svg[data-zoom="16"] path.stroke.tag-highway-service {
+.low-zoom path.stroke.tag-highway-service {
     stroke-width:2;
 }
-svg[data-zoom="16"] path.casing.tag-highway-service {
+.low-zoom path.casing.tag-highway-service {
     stroke-width:4;
 }
 
@@ -712,10 +763,10 @@ path.casing.tag-highway-track {
     stroke-linecap: butt;
     stroke-dasharray: 6, 6;
 }
-svg[data-zoom="16"] path.stroke.tag-highway-track {
+.low-zoom path.stroke.tag-highway-track {
     stroke-width:2;
 }
-svg[data-zoom="16"] path.casing.tag-highway-track {
+.low-zoom path.casing.tag-highway-track {
     stroke-width:4;
 }
 
@@ -744,14 +795,14 @@ path.casing.tag-highway-bridleway {
     stroke: #fff;
 }
 
-svg[data-zoom="16"] path.stroke.tag-highway-footway,
-svg[data-zoom="16"] path.stroke.tag-highway-cycleway,
-svg[data-zoom="16"] path.stroke.tag-highway-bridleway {
+.low-zoom path.stroke.tag-highway-footway,
+.low-zoom path.stroke.tag-highway-cycleway,
+.low-zoom path.stroke.tag-highway-bridleway {
     stroke-width: 2;
 }
-svg[data-zoom="16"] path.casing.tag-highway-footway,
-svg[data-zoom="16"] path.casing.tag-highway-cycleway,
-svg[data-zoom="16"] path.casing.tag-highway-bridleway {
+.low-zoom path.casing.tag-highway-footway,
+.low-zoom path.casing.tag-highway-cycleway,
+.low-zoom path.casing.tag-highway-bridleway {
     stroke-width: 4;
 }
 
@@ -797,121 +848,69 @@ path.casing.tag-aeroway-runway {
     stroke-linecap: square;
 }
 path.fill.tag-aeroway-runway {
-    fill: #000;
-    fill-opacity: 0.6;
+    stroke: rgba(0, 0, 0, 0.6);
+    fill: rgba(0, 0, 0, 0.6);
 }
 path.stroke.tag-aeroway-apron {
     stroke: #805C80;
 }
 path.fill.tag-aeroway-apron {
-    fill: #805C80;
-    fill-opacity: 0.2;
+    stroke: rgba(128, 92, 128, 0.2);
+    fill: rgba(128, 92, 128, 0.2);
 }
 
-
-/* bridges */
-
-path.casing.tag-bridge {
-    stroke-width: 14;
-    stroke-opacity: 0.5;
-    stroke: #000;
-}
-
-path.casing.tag-highway-living_street.tag-bridge,
-path.casing.tag-highway-path.tag-bridge {
-    stroke-width: 6;
-}
-
-path.casing.line.tag-highway-pedestrian,
-path.casing.tag-highway-service.tag-bridge,
-path.casing.tag-highway-track.tag-bridge,
-path.casing.tag-highway-steps.tag-bridge,
-path.casing.tag-highway-footway.tag-bridge,
-path.casing.tag-highway-cycleway.tag-bridge,
-path.casing.tag-highway-bridleway.tag-bridge {
-    stroke-width: 8;
-}
-
-path.shadow.tag-highway-residential.tag-bridge {
-    stroke-width:22;
-}
-
-path.shadow.tag-highway-living_street.tag-bridge,
-path.shadow.tag-highway-path.tag-bridge,
-path.shadow.line.tag-highway-pedestrian,
-path.shadow.tag-highway-service.tag-bridge,
-path.shadow.tag-highway-track.tag-bridge,
-path.shadow.tag-highway-steps.tag-bridge,
-path.shadow.tag-highway-footway.tag-bridge,
-path.shadow.tag-highway-cycleway.tag-bridge,
-path.shadow.tag-highway-bridleway.tag-bridge {
-    stroke-width: 16;
-}
-
-/* tunnels */
-
-path.stroke.tag-highway.tag-tunnel {
-    stroke-opacity: 0.3;
-}
-
-path.casing.tag-highway.tag-tunnel {
-    stroke-opacity: 0.5;
-}
-
-path.stroke.tag-highway-construction,
-path.casing.tag-highway-construction {
-    stroke-linecap: butt;
-    stroke-dasharray: 7, 7;
-}
-
-/* construction */
-
-svg[data-zoom="16"] path.stroke.tag-highway-construction,
-svg[data-zoom="16"] path.casing.tag-highway-construction {
-    stroke-linecap: butt;
-    stroke-dasharray: 5, 5;
-}
 
 /* railways */
 
-.line.stroke.tag-railway {
+path.stroke.tag-railway {
     stroke: #eee;
     stroke-width: 2;
     stroke-linecap: butt;
     stroke-dasharray: 12,12;
 }
-.line.casing.tag-railway {
+
+path.casing.tag-railway {
     stroke: #555;
     stroke-width: 4;
 }
 
-.line.stroke.tag-railway-abandoned {
+path.stroke.tag-railway-abandoned {
     stroke: #eee;
 }
-.line.casing.tag-railway-abandoned {
+path.casing.tag-railway-abandoned {
     stroke: #999;
 }
 
-.line.stroke.tag-railway-subway {
+path.stroke.tag-railway-subway {
     stroke: #666;
 }
-.line.casing.tag-railway-subway {
+path.casing.tag-railway-subway {
     stroke: #222;
 }
 
-.line.stroke.tag-railway-platform {
+path.stroke.tag-railway-platform {
     stroke: #999;
     stroke-width: 4;
     stroke-dasharray: none;
 }
-.line.casing.tag-railway-platform {
+path.casing.tag-railway-platform {
+    stroke: none;
+}
+
+.area.stroke.tag-railway {
+    stroke: white;
+    stroke-width: 1;
+    stroke-dasharray: none;
+}
+.area.casing.tag-railway {
     stroke: none;
 }
 
 /* waterways */
 
 path.fill.tag-waterway {
-    fill: #77d3de;
+    stroke: rgba(119, 211, 222, 0.3);
+    fill: rgba(119, 211, 222, 0.3);
 }
 
 path.stroke.tag-waterway {
@@ -927,13 +926,6 @@ path.stroke.tag-waterway-river {
     stroke-width: 4;
 }
 path.casing.tag-waterway-river {
-    stroke-width: 6;
-}
-
-svg[data-zoom="16"] path.stroke.tag-waterway-river {
-    stroke-width: 4;
-}
-svg[data-zoom="16"] path.casing.tag-waterway-river {
     stroke-width: 6;
 }
 
@@ -974,6 +966,147 @@ path.casing.tag-boundary-national_park {
     stroke: #b0e298;
 }
 
+/* barriers */
+
+path.stroke.tag-barrier {
+    stroke: #ddd;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-dasharray: 15, 5, 1, 5;
+}
+.low-zoom path.stroke.tag-barrier {
+    stroke-width: 2px;
+    stroke-linecap: butt;
+    stroke-dasharray: 8, 2, 2, 2;
+}
+
+/* bridges */
+
+path.casing.tag-bridge {
+    stroke-width: 16;
+    stroke-opacity: 0.6;
+    stroke: #000;
+    stroke-linecap: butt;
+}
+
+path.shadow.tag-bridge {
+    stroke-width: 22;
+}
+
+path.casing.line.tag-railway.tag-bridge,
+path.casing.tag-highway-living_street.tag-bridge,
+path.casing.tag-highway-path.tag-bridge,
+path.casing.line.tag-highway-pedestrian.tag-bridge,
+path.casing.tag-highway-service.tag-bridge,
+path.casing.tag-highway-track.tag-bridge,
+path.casing.tag-highway-steps.tag-bridge,
+path.casing.tag-highway-footway.tag-bridge,
+path.casing.tag-highway-cycleway.tag-bridge,
+path.casing.tag-highway-bridleway.tag-bridge {
+    stroke-width: 10;
+}
+
+path.shadow.line.tag-railway.tag-bridge,
+path.shadow.tag-highway-living_street.tag-bridge,
+path.shadow.tag-highway-path.tag-bridge,
+path.shadow.line.tag-highway-pedestrian.tag-bridge,
+path.shadow.tag-highway-service.tag-bridge,
+path.shadow.tag-highway-track.tag-bridge,
+path.shadow.tag-highway-steps.tag-bridge,
+path.shadow.tag-highway-footway.tag-bridge,
+path.shadow.tag-highway-cycleway.tag-bridge,
+path.shadow.tag-highway-bridleway.tag-bridge {
+    stroke-width: 17;
+}
+
+
+.low-zoom path.casing.tag-bridge {
+    stroke-width: 10;
+    stroke-opacity: 0.6;
+    stroke: #000;
+    stroke-linecap: butt;
+}
+
+.low-zoom path.shadow.tag-bridge {
+    stroke-width: 14;
+}
+
+.low-zoom path.casing.line.tag-railway.tag-bridge,
+.low-zoom path.casing.tag-highway-living_street.tag-bridge,
+.low-zoom path.casing.tag-highway-path.tag-bridge,
+.low-zoom path.casing.line.tag-highway-pedestrian.tag-bridge,
+.low-zoom path.casing.tag-highway-service.tag-bridge,
+.low-zoom path.casing.tag-highway-track.tag-bridge,
+.low-zoom path.casing.tag-highway-steps.tag-bridge,
+.low-zoom path.casing.tag-highway-footway.tag-bridge,
+.low-zoom path.casing.tag-highway-cycleway.tag-bridge,
+.low-zoom path.casing.tag-highway-bridleway.tag-bridge {
+    stroke-width: 6;
+}
+
+.low-zoom path.shadow.line.tag-railway.tag-bridge,
+.low-zoom path.shadow.tag-highway-living_street.tag-bridge,
+.low-zoom path.shadow.tag-highway-path.tag-bridge,
+.low-zoom path.shadow.line.tag-highway-pedestrian.tag-bridge,
+.low-zoom path.shadow.tag-highway-service.tag-bridge,
+.low-zoom path.shadow.tag-highway-track.tag-bridge,
+.low-zoom path.shadow.tag-highway-steps.tag-bridge,
+.low-zoom path.shadow.tag-highway-footway.tag-bridge,
+.low-zoom path.shadow.tag-highway-cycleway.tag-bridge,
+.low-zoom path.shadow.tag-highway-bridleway.tag-bridge {
+    stroke-width: 13;
+}
+
+/* tunnels */
+
+path.stroke.tag-tunnel {
+    stroke-opacity: 0.3;
+}
+
+path.casing.tag-tunnel {
+    stroke-opacity: 0.5;
+}
+
+/* embankments / cuttings */
+
+path.casing.tag-embankment,
+path.casing.tag-cutting {
+    stroke-opacity: 0.5;
+    stroke: #000;
+    stroke-width: 22;
+    stroke-dasharray: 2, 4;
+    stroke-linecap: butt;
+}
+
+path.shadow.tag-embankment,
+path.shadow.tag-cutting {
+    stroke-width: 28;
+}
+
+.low-zoom path.casing.tag-embankment,
+.low-zoom path.casing.tag-cutting {
+    stroke-width: 10;
+}
+
+.low-zoom path.shadow.tag-embankment,
+.low-zoom path.shadow.tag-cutting {
+    stroke-width: 14;
+}
+
+
+/* construction */
+
+path.stroke.tag-highway-construction,
+path.casing.tag-highway-construction {
+    stroke-linecap: butt;
+    stroke-dasharray: 7, 7;
+}
+
+.low-zoom path.stroke.tag-highway-construction,
+.low-zoom path.casing.tag-highway-construction {
+    stroke-linecap: butt;
+    stroke-dasharray: 5, 5;
+}
 
 text {
     font-size:10px;
@@ -994,6 +1127,24 @@ marker#oneway-marker path {
 path.oneway {
     stroke-width: 6px;
 }
+
+/* Buildings */
+
+path.stroke.tag-building,
+path.stroke.tag-amenity-shelter {
+    stroke: rgb(224, 110, 95);
+}
+path.fill.tag-building,
+path.fill.tag-amenity-shelter {
+    stroke: rgba(224, 110, 95, 0.3);
+    fill: rgba(224, 110, 95, 0.3);
+}
+.preset-icon-fill-area.tag-building,
+.preset-icon-fill-area.tag-amenity-shelter {
+    border-color: rgb(224, 110, 95);
+    background-color: rgba(224, 110, 95, 0.3);
+}
+
 
 /*
  * Labels
@@ -1042,65 +1193,55 @@ text.point {
   font-size: 10px;
 }
 
+/* Turns */
+
+g.turn rect,
+g.turn circle {
+    fill: none;
+    pointer-events: all;
+}
+
+.form-field-restrictions .vertex {
+    pointer-events: none;
+    cursor: auto !important;
+}
+
 /* Cursors */
 
+.map-in-map,
 #map {
     cursor: auto; /* Opera */
     cursor: url(img/cursor-grab.png) 9 9, auto; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-grab.png) 1x,
-        url(img/cursor-grab2x.png) 2x
-        ) 9 9, auto;
 }
 
 .mode-browse .point,
 .mode-select .point {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-point.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-point.png) 1x,
-        url(img/cursor-select-point2x.png) 2x
-        ), pointer;
 }
 
 .mode-select .vertex,
 .mode-browse .vertex {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-vertex.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-vertex.png) 1x,
-        url(img/cursor-select-vertex2x.png) 2x
-        ), pointer;
 }
 
 .mode-browse .line,
 .mode-select .line {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-line.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-line.png) 1x,
-        url(img/cursor-select-line2x.png) 2x
-        ), pointer;
 }
 
 .mode-select .area,
 .mode-browse .area {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-area.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-area.png) 1x,
-        url(img/cursor-select-area2x.png) 2x
-        ), pointer;
 }
 
 .mode-select .midpoint,
 .mode-browse .midpoint {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-split.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-split.png) 1x,
-        url(img/cursor-select-split2x.png) 2x
-        ), pointer;
 }
 
 .mode-select .behavior-multiselect .point,
@@ -1109,19 +1250,11 @@ text.point {
 .mode-select .behavior-multiselect .area {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-add.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-add.png) 1x,
-        url(img/cursor-select-add2x.png) 2x
-        ), pointer;
 }
 
 .mode-select .behavior-multiselect .selected {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-remove.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-remove.png) 1x,
-        url(img/cursor-select-remove2x.png) 2x
-        ), pointer;
 }
 
 #map .point:active,
@@ -1132,10 +1265,6 @@ text.point {
 #map .mode-select .selected {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-select-acting.png), pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-select-acting.png) 1x,
-        url(img/cursor-select-acting2x.png) 2x
-        ), pointer;
 }
 
 .mode-draw-line #map,
@@ -1145,10 +1274,6 @@ text.point {
 .mode-drag-node #map {
     cursor: crosshair; /* Opera */
     cursor: url(img/cursor-draw.png) 9 9, crosshair; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-draw.png) 1x,
-        url(img/cursor-draw2x.png) 2x
-        ) 9 9, crosshair;
 }
 
 .mode-draw-line .way.hover,
@@ -1158,10 +1283,6 @@ text.point {
 .mode-drag-node .way.hover {
     cursor: crosshair; /* Opera */
     cursor: url(img/cursor-draw-connect-line.png) 9 9, crosshair; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-draw-connect-line.png) 1x,
-        url(img/cursor-draw-connect-line2x.png) 2x
-        ) 9 9, crosshair;
 }
 
 .mode-draw-line .vertex.hover,
@@ -1171,22 +1292,25 @@ text.point {
 .mode-drag-node .vertex.hover {
     cursor: crosshair; /* Opera */
     cursor: url(img/cursor-draw-connect-vertex.png) 9 9, crosshair; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-draw-connect-vertex.png) 1x,
-        url(img/cursor-draw-connect-vertex2x.png) 2x
-        ) 9 9, crosshair;
 }
 
 .mode-add-point #map,
-.lasso #map,
-.lasso .way,
-.lasso .vertex {
+.mode-browse.lasso #map,
+.mode-browse.lasso .way,
+.mode-browse.lasso .vertex,
+.mode-browse.lasso .midpoint,
+.mode-select.lasso #map,
+.mode-select.lasso .way,
+.mode-select.lasso .vertex,
+.mode-select.lasso .midpoint {
     cursor: crosshair; /* Opera */
     cursor: url(img/cursor-draw.png) 9 9, crosshair; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-draw.png) 1x,
-        url(img/cursor-draw2x.png) 2x
-        ) 9 9, crosshair;
+}
+
+.turn rect,
+.turn circle {
+    cursor: pointer; /* Opera */
+    cursor: url(img/cursor-pointer.png) 6 1, pointer; /* FF */
 }
 
 .lasso #map {
@@ -1194,11 +1318,48 @@ text.point {
 }
 
 /* GPX Paths */
+div.layer-gpx {
+    pointer-events: none;
+}
+
 path.gpx {
-    stroke: #6AFF25;
+    stroke: #FF26D4;
     stroke-width: 2;
     fill: none;
+}
+
+text.gpx {
+    fill: #FF26D4;
+}
+
+/* Mapillary Layer */
+
+.layer-mapillary {
     pointer-events: none;
+}
+
+.layer-mapillary g {
+    pointer-events: visible;
+    cursor: pointer; /* Opera */
+    cursor: url(img/cursor-select-mapillary.png) 6 1, pointer; /* FF */
+}
+
+.layer-mapillary g * {
+    stroke-width: 2;
+    stroke: #ffc600;
+    fill: #ffc600;
+}
+
+.layer-mapillary g:hover * {
+    stroke-width: 2;
+    stroke: #ff9900;
+    fill: #ff9900;
+}
+
+.layer-mapillary g.selected * {
+    stroke-width: 4;
+    stroke: #ff5800;
+    fill: #ff5800;
 }
 
 /* Modes */
@@ -1223,6 +1384,42 @@ path.gpx {
 .mode-add-area .area.fill,
 .mode-drag-node .area.fill {
     pointer-events: none;
+}
+
+
+/* Fill Styles */
+.low-zoom.fill-wireframe path.stroke,
+.fill-wireframe path.stroke {
+    stroke-width: 1;
+    stroke-opacity: 0.5;
+    stroke-dasharray: none;
+    fill: none;
+}
+
+.low-zoom.fill-wireframe path.shadow,
+.fill-wireframe path.shadow {
+    stroke-width: 8;
+}
+
+.fill-wireframe path.shadow.hover:not(.selected) {
+    stroke-opacity: 0.2;
+}
+.fill-wireframe path.shadow.selected {
+    stroke-opacity: 0.4;
+}
+
+.fill-wireframe .point,
+.fill-wireframe .icon,
+.fill-wireframe path.casing,
+.fill-wireframe path.fill,
+.fill-wireframe path.oneway {
+    display: none;
+}
+
+.fill-partial path.fill {
+    fill-opacity: 0;
+    stroke-width: 60px;
+    pointer-events: visibleStroke;
 }
 /* Basics
 ------------------------------------------------------- */
@@ -1263,6 +1460,13 @@ body {
     position: relative;
     overflow: hidden;
     height: 100%;
+}
+
+#defs {
+    /* Can't be display: none or the clippaths are ignored. */
+    position: absolute;
+    width: 0;
+    height: 0;
 }
 
 .spacer {
@@ -1308,10 +1512,6 @@ button,
 .radial-menu-item {
     cursor: pointer; /* Opera */
     cursor: url(img/cursor-pointer.png) 6 1, pointer; /* FF */
-    cursor: -webkit-image-set(
-        url(img/cursor-pointer.png) 1x,
-        url(img/cursor-pointer2x.png) 2x
-        ) 6 1, pointer;
 }
 
 h2 {
@@ -1363,10 +1563,6 @@ strong {
 
 a:visited, a {
     color: #7092ff;
-    -webkit-transition: all 100ms;
-       -moz-transition: all 100ms;
-         -o-transition: all 100ms;
-            transition: all 100ms;
 }
 
 a:hover {
@@ -1395,11 +1591,6 @@ input[type=email] {
     width: 100%;
     border-radius:4px;
     text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-transition: all 200ms;
-       -moz-transition: all 200ms;
-         -o-transition: all 200ms;
-            transition: all 200ms;
 }
 
 textarea:focus,
@@ -1463,73 +1654,39 @@ table.tags, table.tags td, table.tags th {
 
 ul li { list-style: none;}
 
-.toggle-list {
-    border-radius: 4px;
-    border: 1px solid #CCC;
-}
-
 .toggle-list > label {
     position: relative;
     padding: 5px 10px;
-    display:block;
+    display: block;
     height: 30px;
-    border-bottom: 1px solid #ccc;
     background-color: white;
     color: #7092FF;
     cursor: pointer;
-       -moz-transition: all 100ms;
-         -o-transition: all 100ms;
-            transition: all 100ms;
 }
 
 .toggle-list > label:hover {
     background-color: #ececec;
 }
 
-.toggle-list > label:first-child {
-    border-radius: 3px 3px 0 0;
+.toggle-list > label:not(:last-child) {
+    border-bottom: 1px solid #ccc;
 }
 
 .toggle-list > label:last-child {
     border-radius: 0 0 3px 3px;
-    border-bottom-width: 0;
 }
 
-.toggle-list > label:only-child {
-    border-radius: 3px;
-}
-
-.toggle-list label > span { 
+.toggle-list label > span {
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.toggle-list > label.remove span.icon {
-    display: block;
-    width: 14px;
-    float: left;
-    margin-right: 5px;
-    background-position: -204px 0;
-}
-
 .toggle-list > label.active {
     background: #E8EBFF;
 }
 
-.link-list li {
-    float: right;
-    border-left: 1px solid rgba(255,255,255,.5);
-    padding: 5px 0 5px 5px;
-    margin-left: 5px;
-}
-
-ul.link-list li:last-child {
-    border-left: 0;
-    margin-left: 0;
-    padding-left: 0;
-}
 
 /* Utility Classes
 ------------------------------------------------------- */
@@ -1559,7 +1716,8 @@ ul.link-list li:last-child {
 div.hide,
 form.hide,
 button.hide,
-a.hide {
+a.hide,
+li.hide {
     display: none;
 }
 
@@ -1582,6 +1740,7 @@ a.hide {
     height:100%;
     right: -100%;
 }
+
 
 .pane {
     position:absolute;
@@ -1611,11 +1770,6 @@ button {
     display: inline-block;
     height:40px;
     border-radius:4px;
-    /* Crashes Safari: https://github.com/systemed/iD/issues/1188 */
-    /*-webkit-transition: all 100ms;*/
-       -moz-transition: all 100ms;
-         -o-transition: all 100ms;
-            transition: all 100ms;
 }
 
 button:focus,
@@ -1671,6 +1825,10 @@ button.minor:hover {
     border-right: 1px solid rgba(0,0,0,.5);
 }
 
+.fillL .joined button {
+    border-right: 1px solid white;
+}
+
 .joined button:first-child {
     border-radius:4px 0 0 4px;
 }
@@ -1682,11 +1840,27 @@ button.minor:hover {
 
 button.action {
     background: #7092ff;
+    color: white;
+}
+
+button[disabled].action,
+button[disabled].action:hover {
+    background: #cccccc;
+    color: #888;
 }
 
 button.action:focus,
 button.action:hover {
     background: #597BE7;
+}
+
+button.secondary-action {
+    background: #ececec;
+}
+
+button.secondary-action:focus,
+button.secondary-action:hover {
+    background: #cccccc;
 }
 
 button.save.has-count {
@@ -1780,6 +1954,8 @@ button.save.has-count .count::before {
 .icon.relation    { background-position: -520px 0;}
 .icon.relation.route         { background-position: -540px 0;}
 .icon.relation.multipolygon  { background-position: -560px 0;}
+.icon.vertex     { background-position: -580px 0;}
+.icon.data       { background-position: -600px 0;}
 
 .icon.inspect.light    { background-position: -220px -20px;}
 .icon.plus.light       { background-position: -240px -20px;}
@@ -1792,6 +1968,7 @@ button.save.has-count .count::before {
 .icon.geolocate.light  { background-position: -360px -20px;}
 .icon.bug.light        { background-position: -400px -20px;}
 .icon.help.light       { background-position: -460px -20px;}
+.icon.data.light       { background-position: -600px -20px;}
 
 .icon.back.blue        { background-position: -420px -20px;}
 .icon.forward.blue     { background-position: -440px -20px;}
@@ -1813,6 +1990,19 @@ button[disabled] .icon.geocode    { background-position: -280px -40px;}
 button[disabled] .icon.layers     { background-position: -300px -40px;}
 button[disabled] .icon.avatar     { background-position: -320px -40px;}
 button[disabled] .icon.nearby     { background-position: -340px -40px;}
+button[disabled] .icon.data       { background-position: -600px -40px;}
+
+.icon.point.deleted  { background-position: -480px -80px;}
+.icon.line.deleted   { background-position: -500px -80px;}
+.icon.area.deleted   { background-position: -520px -80px;}
+
+.icon.point.created  { background-position: -480px -100px;}
+.icon.line.created   { background-position: -500px -100px;}
+.icon.area.created   { background-position: -520px -100px;}
+
+.icon.point.modified  { background-position: -22px 0; }
+
+.icon.modified { opacity: .5; }
 
 /* Out link is special */
 
@@ -1842,7 +2032,7 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     top:0;
     right:0;
     height:60px;
-    z-index: 1;
+    z-index: 9;
     min-width: 768px;
 }
 
@@ -1856,7 +2046,7 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
 }
 
 .header h3 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 0;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -1888,13 +2078,13 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     right: 0;
     top: 0;
     height: 59px;
-    z-index: 3;
+    z-index: 50;
 }
 
 .footer {
     position: absolute;
     bottom: 0;
-    padding: 5px 30px 5px 30px;
+    padding: 5px 20px 5px 20px;
     border-top: 1px solid #ccc;
     background-color: #fafafa;
     width: 100%;
@@ -1916,7 +2106,7 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     float: left;
     height: 100%;
     overflow: hidden;
-    z-index: 2;
+    z-index: 10;
     background: #f6f6f6;
 }
 
@@ -1946,6 +2136,48 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     bottom: 0;
 }
 
+.mapillary-image {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    width: 330px;
+    height: 250px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.mapillary-image a {
+    display: block;
+    position: absolute;
+    height: auto;
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    right: 0;
+    padding: 5px 10px;
+}
+
+.mapillary-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.mapillary-image.hidden {
+    visibility: hidden;
+}
+
+.mapillary-image.temp button {
+    display: none;
+}
+
+.mapillary-image button {
+    border-radius: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 .feature-list-pane .inspector-body {
     top: 120px;
 }
@@ -1955,6 +2187,10 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
 }
 
 .entity-editor-pane .inspector-body {
+    top: 60px;
+}
+
+.selection-list-pane .inspector-body {
     top: 60px;
 }
 
@@ -2007,9 +2243,6 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     text-overflow: ellipsis;
     overflow: hidden;
     border-left: 1px solid rgba(0, 0, 0, .1);
-    -moz-transition: all 100ms;
-    -o-transition: all 100ms;
-    transition: all 100ms;
 }
 
 .feature-list-item .label .icon {
@@ -2089,9 +2322,6 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     text-overflow: ellipsis;
     overflow: hidden;
     border-left: 1px solid rgba(0, 0, 0, .1);
-    -moz-transition: all 100ms;
-    -o-transition: all 100ms;
-    transition: all 100ms;
     border-radius: 0 3px 3px 0;
     }
 
@@ -2103,6 +2333,15 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     height: 100%;
     border: 1px solid #CCC;
     border-radius: 0 3px 3px 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    background: #fafafa;
+}
+
+.preset-list-item button.tag-reference-button .icon {
+    opacity: .5;
 }
 
 .current .preset-list-button,
@@ -2148,35 +2387,24 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
 
 /* Preset icon colors */
 
-.preset-icon-fill.icon-area {
+.preset-icon-fill-area {
     cursor: inherit;
-    height: 45px;
-    width: 45px;
+    height: 39px;
+    width: 39px;
     margin: auto;
     position: absolute;
-    left: 7px; top: 7px;
-    background:transparent url(img/sprite.svg) no-repeat -240px -80px;
+    left: 10px;
+    top: 10px;
 }
 
-.preset-icon-fill.tag-shop,
-.preset-icon-fill.tag-building {
+.preset-icon-fill-area:after {
+    content: '';
+    left: -4px;
+    top: -4px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
     background:transparent url(img/sprite.svg) no-repeat 0 -80px;
-}
-
-.preset-icon-fill.tag-natural-water {
-    background:transparent url(img/sprite.svg) no-repeat -60px -80px;
-}
-
-.preset-icon-fill.tag-landuse,
-.preset-icon-fill.tag-natural-wood,
-.preset-icon-fill.tag-natural-tree,
-.preset-icon-fill.tag-natural-grassland,
-.preset-icon-fill.tag-leisure-park {
-    background:transparent url(img/sprite.svg) no-repeat -120px -80px;
-}
-
-.preset-icon-fill.tag-amenity-parking {
-    background:transparent url(img/sprite.svg) no-repeat -180px -80px;
 }
 
 /* preset form basics */
@@ -2185,9 +2413,9 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     overflow: hidden;
 }
 
-.inspector-preset form.preset-form {
+.inspector-preset .preset-form {
     padding: 10px;
-    margin: 0 10px 20px 10px;
+    margin: 0 10px 10px 10px;
     border-radius: 8px;
 }
 
@@ -2231,26 +2459,43 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     background: #f6f6f6;
     display: block;
     border-radius: 4px 4px 0 0;
+    overflow: hidden;
+}
+
+.form-label-button-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    text-align: right;
+}
+
+.form-label-button-wrap .tag-reference-button {
+    border-radius: 0 3px 0 0;
+}
+
+.form-label-button-wrap .icon {
+    opacity: .5;
 }
 
 .form-label button {
     border-left: 1px solid #CCC;
+    width: 10%;
+    height: 100%;
+    border-radius: 0;
+    background: #fafafa;
 }
 
-.form-label .modified-icon {
-    border-right: 0;
-    opacity: 0;
-    z-index: -10;
-    right: 10%;
+.form-label .modified-icon,
+.form-field .remove-icon {
+    display: none;
 }
 
-.modified .form-label .modified-icon {
-    opacity: 1;
-    z-index: 1;
-}
-
-.form-label button.tag-reference-button {
-    border-top-right-radius: 3px;
+.modified .form-label .modified-icon,
+.present .form-label .remove-icon {
+    display: inline-block;
 }
 
 .form-field > input,
@@ -2260,15 +2505,10 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     min-height: 30px;
     border-top: 0;
     border-radius: 0 0 4px 4px;
-    overflow: hidden;
 }
 
 .form-field textarea {
     height: 65px;
-}
-
-.form-field button.remove {
-    border-radius: 0 0 4px 0;
 }
 
 .inspector-border {
@@ -2293,7 +2533,7 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
 .inspector-hidden,
 .inspector-hover label input[type="checkbox"],
 .inspector-hover label input[type="radio"],
-.inspector-hover .toggle-list label:not(.active),
+.inspector-hover .toggle-list label,
 .inspector-hover .toggle-list label span,
 .inspector-hover .inspector-inner .add-tag,
 .inspector-hover .inspector-inner .add-relation,
@@ -2308,20 +2548,21 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
 }
 
 /* hide but preserve in layout */
-.inspector-hover .modified .form-label .modified-icon,
 .inspector-hover .entity-editor-pane button.minor,
-.inspector-hover .combobox-carat,
+.inspector-hover .combobox-caret,
 .inspector-hover .entity-editor-pane .header button,
 .inspector-hover .spin-control,
 .inspector-hover .hide-toggle:before,
-.inspector-hover .more-buttons,
+.inspector-hover .more-fields,
+.inspector-hover .form-label-button-wrap,
+.inspector-hover .tag-reference-button,
 .inspector-hover .view-on-osm {
     opacity: 0;
 }
 
 /* Styles for raw tag inspector on hover */
 .inspector-hover .tag-row .key-wrap,
-.inspector-hover .tag-row .input-wrap-position {
+.inspector-hover .tag-row .form-field.input-wrap-position {
     width: 50%;
 }
 
@@ -2337,9 +2578,9 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     border-bottom-left-radius: 4px;
 }
 
-.inspector-hover .inspector-body .more-buttons {
+.inspector-hover .more-fields {
     max-height: 0;
-    padding-bottom: 0;
+    margin-bottom: -10px;
 }
 
 /* Unstyle button fields */
@@ -2374,143 +2615,17 @@ a:hover .icon.out-link   { background-position: -500px -14px;}
     line-height: 0;
     display: block;
     overflow: hidden;
-    -webkit-transition: opacity 200ms, width 0 200ms, padding 0 200ms, line-height 0 200ms;
-       -moz-transition: opacity 200ms, width 0 200ms, padding 0 200ms, line-height 0 200ms;
-         -o-transition: opacity 200ms, width 0 200ms, padding 0 200ms, line-height 0 200ms;
-            transition: opacity 200ms, width 0 200ms, padding 0 200ms, line-height 0 200ms;
-}
-
-/* first phase hover-to-active animations */
-
-textarea,
-.form-label,
-.preset-input-wrap,
-.preset-input-wrap .label {
-    -webkit-transition: all 200ms;
-       -moz-transition: all 200ms;
-         -o-transition: all 200ms;
-            transition: all 200ms;
-}
-
-/* second phase hover-to-active animations */
-
-input,
-.checkselect label:last-of-type {
-    -webkit-transition: opacity 200ms 200ms, width 200ms 200ms, margin-right 200ms 200ms;
-       -moz-transition: opacity 200ms 200ms, width 200ms 200ms, margin-right 200ms 200ms;
-         -o-transition: opacity 200ms 200ms, width 200ms 200ms, margin-right 200ms 200ms;
-            transition: opacity 200ms 200ms, width 200ms 200ms, margin-right 200ms 200ms;
-}
-
-.modified .form-label .modified-icon,
-.entity-editor-pane button.minor,
-.combobox-carat,
-.entity-editor-pane .header button,
-.toggle-list label span,
-.spin-control,
-.more-buttons,
-.view-on-osm,
-.hide-toggle:before,
-.entity-editor-pane .toggle-list label::before,
-.entity-editor-pane .toggle-list label.remove .icon {
-    -webkit-transition: opacity 200ms 200ms;
-       -moz-transition: opacity 200ms 200ms;
-         -o-transition: opacity 200ms 200ms;
-            transition: opacity 200ms 200ms;
-}
-
-.entity-editor-pane a.hide-toggle {
-    -webkit-transition: padding-left 200ms 200ms, color 200ms 200ms;
-       -moz-transition: padding-left 200ms 200ms, color 200ms 200ms;
-         -o-transition: padding-left 200ms 200ms, color 200ms 200ms;
-            transition: padding-left 200ms 200ms, color 200ms 200ms;
-}
-
-.entity-editor-pane .toggle-list label:not(.active) {
-    -webkit-transition: height 200ms 200ms, padding 200ms 200ms, border-width 100ms 300ms;
-       -moz-transition: height 200ms 200ms, padding 200ms 200ms, border-width 100ms 300ms;
-         -o-transition: height 200ms 200ms, padding 200ms 200ms, border-width 100ms 300ms;
-            transition: height 200ms 200ms, padding 200ms 200ms, border-width 100ms 300ms;
-}
-
-.entity-editor-pane .toggle-list label {
-    -webkit-transition: border-width 100ms 300ms, padding 200ms 200ms, background-color 200ms 200ms, color 200ms 200ms;
-       -moz-transition: border-width 100ms 300ms, padding 200ms 200ms, background-color 200ms 200ms, color 200ms 200ms;
-         -o-transition: border-width 100ms 300ms, padding 200ms 200ms, background-color 200ms 200ms, color 200ms 200ms;
-            transition: border-width 100ms 300ms, padding 200ms 200ms, background-color 200ms 200ms, color 200ms 200ms;
 }
 
 /* adding additional preset fields */
 
-.inspector-body .more-buttons {
-    max-height: 100px;
-    padding-top: 0;
-    -webkit-transition: padding 200ms 200ms, max-height 200ms 200ms;
-       -moz-transition: padding 200ms 200ms, max-height 200ms 200ms;
-         -o-transition: padding 200ms 200ms, max-height 200ms 200ms;
-            transition: padding 200ms 200ms, max-height 200ms 200ms;
+.more-fields {
+    padding: 0 20px 20px 20px;
+    font-weight: bold;
 }
 
-button.preset-add-field {
-    background: #f6f6f6;
-    width: 25%;
-    height: 40px;
-    -webkit-transition: width 200ms;
-       -moz-transition: width 200ms;
-         -o-transition: width 200ms;
-            transition: width 200ms;
-}
-
-button.preset-add-field:hover {
-    background: #ececec;
-}
-
-/* set width based on # of buttons */
-
-button.preset-add-field:only-child {
-    width: 100%;
-}
-
-button.preset-add-field:nth-last-child(2),
-button.preset-add-field:nth-last-child(2) ~ button.preset-add-field {
-    width: 50%;
-}
-
-button.preset-add-field:nth-last-child(3),
-button.preset-add-field:nth-last-child(3) ~ button.preset-add-field {
-    width: 33.3333%;
-}
-
-button.preset-add-field:nth-last-child(4),
-button.preset-add-field:nth-last-child(4) ~ button.preset-add-field {
-    width: 25%;
-}
-
-button.preset-add-field:nth-last-child(5),
-button.preset-add-field:nth-last-child(5) ~ button.preset-add-field {
-    width: 20%;
-}
-
-button.preset-add-field:nth-last-child(6),
-button.preset-add-field:nth-last-child(6) ~ button.preset-add-field {
-    width: 16.6666%;
-}
-
-button.preset-add-field:nth-last-child(7),
-button.preset-add-field:nth-last-child(7) ~ button.preset-add-field {
-    width: 14.2857%;
-}
-
-button.preset-add-field:nth-last-child(8),
-button.preset-add-field:nth-last-child(8) ~ button.preset-add-field {
-    width: 12.5%;
-}
-
-.preset-fav button.fav {
-    height: 30px;
-    margin: 5px;
-    padding: 0 10px;
-}
+.more-fields label { padding: 5px 10px 5px 0; }
+.more-fields input { width: 50%;}
 
 /* preset form access */
 
@@ -2633,7 +2748,7 @@ input[type=number] {
     padding-right: 10%;
 }
 
-.form-field .wiki-title ~ .combobox-carat {
+.form-field .wiki-title ~ .combobox-caret {
     margin-left: -18%;
     margin-right: 9%;
 }
@@ -2679,13 +2794,13 @@ input[type=number] {
     vertical-align: top;
 }
 
+.form-field .localized-wrap {
+    padding: 0 10px;
+}
+
 .form-field .localized-wrap .entry {
     position: relative;
     overflow: hidden;
-    background: #f1f1f1;
-    border: 1px solid #ccc;
-    border-width: 0;
-    border-radius: 4px;
 }
 
 .form-field .localized-wrap .entry::before {
@@ -2707,47 +2822,65 @@ input[type=number] {
 }
 
 .form-field .localized-wrap .entry .localized-value {
-    padding-right: 10%;
     border-top-width: 0;
     border-radius: 0 0 4px 4px;
 }
 
+.form-field .localized-wrap .form-label button {
+    border-top-right-radius: 3px;
+}
+
 /* Preset form address */
 
-.form-field .addr-housename {
-    border: 0;
-    border-radius: 0;
+.addr-row input {
+    border-right: 0;
+    border-bottom: 0;
 }
 
-.form-field .addr-number {
-    width: 33.3333%;
+.addr-row:first-of-type input {
+    border-top: 0;
+}
+
+.addr-row input:first-of-type {
     border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
+}
+
+.addr-row input {
     border-radius: 0;
 }
 
-.form-field .addr-street {
-    width: 66.6666%;
-    border-right: 0;
-    border-bottom: 0;
-    border-radius: 0;
-}
-
-.form-field .addr-city {
-    width: 66.6666%;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
+.addr-row:last-of-type input:first-of-type {
     border-radius: 0 0 0 4px;
 }
 
-.form-field .addr-postcode {
-    width: 33.3333%;
-    border-right: 0;
-    border-bottom: 0;
+.addr-row:last-of-type input:last-of-type {
     border-radius: 0 0 4px 0;
 }
+
+/* Restrictions editor */
+
+.form-field-restrictions .preset-input-wrap {
+    position: relative;
+    height: 300px;
+}
+
+.form-field-restrictions svg {
+    width: 100%;
+    height: 100%;
+}
+
+.form-field-restrictions .restriction-help {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 2px 6px;
+    background-color: rgba(255, 255, 255, .8);
+    color: #999;
+    text-align: center;
+}
+
 /* combobox dropdown */
 
 div.combobox {
@@ -2781,10 +2914,21 @@ div.combobox {
     border-top: 0;
 }
 
-.combobox-carat {
-    margin-left: -20px;
-    margin-right: 10px;
-    display:inline-block;
+.combobox-caret {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin-left: -30px;
+    vertical-align: top;
+}
+
+.combobox-caret::after {
+    content:"";
+    height: 0; width: 0;
+    position: absolute;
+    left: 0; right: 0; bottom: 0; top: 0;
+    margin: auto;
     border-top: 5px solid #ccc;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
@@ -2815,10 +2959,6 @@ div.combobox {
     width: 40%;
     float: left;
     height: 30px;
-    -webkit-transition: width 200ms;
-       -moz-transition: width 200ms;
-         -o-transition: width 200ms;
-            transition: width 200ms;
 }
 
 .tag-row input.key {
@@ -2870,6 +3010,10 @@ div.combobox {
 
 .tag-row .tag-reference-button {
     right: 0;
+    border-radius: 0;
+    width: 10%;
+    top: 0;
+    background: #fafafa;
 }
 
 /* Adding form fields to tag editor */
@@ -2903,6 +3047,7 @@ button.minor.tag-reference-loading {
 
 .tag-reference-body {
     overflow: hidden;
+    clear: both;
 }
 
 .tag-reference-body p,
@@ -2977,6 +3122,10 @@ img.wiki-image {
     padding-left: 10px;
 }
 
+.member-incomplete .member-delete {
+    display: none;
+}
+
 .member-row-new .member-entity-input {
     border-radius: 4px 4px 0 0;
     border: 1px solid #cfcfcf;
@@ -3014,19 +3163,9 @@ img.wiki-image {
     background: rgba(0, 0, 0, .8);
 }
 
+.map-control > button.active,
 .map-control > button.active:hover {
     background: #7092ff;
-}
-
-.map-overlay {
-    z-index: -1;
-    right: 75%;
-    max-width: 260px;
-    min-width: 210px;
-    position: fixed;
-    left: 30px;
-    display: block;
-    padding: 10px 10px 0 10px;
 }
 
 /* Zoomer */
@@ -3035,42 +3174,83 @@ img.wiki-image {
     border-radius: 4px 0 0 0;
 }
 
-/* Background Settings */
+/* Background / Map Data Settings */
 
 
-.toggle-list.layer-list {
-    margin-bottom: 10px;
+.map-data-control button {
+    border-radius: 0;
 }
 
 .background-control button {
     border-radius: 4px 0 0 0;
 }
 
-
-.background-control button.active {
-    border-radius: 0;
-}
-
+.map-data-control,
 .background-control {
     position: relative;
 }
 
-.background-control .map-overlay {
-    position: absolute;
-    top: 0;
-}
-
 .nudge-container {
-    border-top: 1px solid #CCC;
-    margin: 0 -10px;
+    border: 1px solid #CCC;
 }
 
 .background-control .adjustments button:last-child {
     border: 0;
 }
 
-.background-control .hide-toggle  {
+.map-data-control .hide-toggle,
+.background-control .hide-toggle {
     padding-bottom: 10px;
+}
+
+.layer-list {
+    margin-bottom: 10px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+}
+
+.layer-list li {
+    position: relative;
+    height: 30px;
+    background-color: white;
+    color: #7092FF;
+}
+
+.layer-list > li:first-child {
+    border-radius: 3px 3px 0 0;
+}
+
+.layer-list > li:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
+.layer-list > li:only-child {
+    border-radius: 3px;
+}
+
+.layer-list li:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+.layer-list li:hover {
+    background-color: #ececec;
+}
+
+.layer-list li.active {
+    background: #E8EBFF;
+}
+
+.layer-list label {
+    display: block;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.layer-list label > span {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .hide-toggle {
@@ -3103,7 +3283,6 @@ img.wiki-image {
     float: left;
     display: block;
     width:20%;
-    border-radius: 0;
     border-right: 1px solid #CCC;
     position: relative;
 }
@@ -3145,10 +3324,10 @@ img.wiki-image {
 .opacity-options {
     background: url(img/background-pattern-opacity.png) 0 0 repeat;
     height:20px;
-    width:62px;
+    width:82px;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 50px;
+    top: 20px;
     border: 1px solid #ccc;
 }
 
@@ -3165,6 +3344,8 @@ img.wiki-image {
     z-index: 9999;
 }
 
+.map-data-control li:hover .select-box,
+.map-data-control li.selected .select-box,
 .background-control li:hover .select-box,
 .background-control li.selected .select-box {
     border: 2px solid #7092ff;
@@ -3172,6 +3353,8 @@ img.wiki-image {
     opacity: .5;
 }
 
+.map-data-control li.selected:hover .select-box,
+.map-data-control li.selected .select-box,
 .background-control li.selected:hover .select-box,
 .background-control li.selected .select-box {
     opacity: 1;
@@ -3184,14 +3367,31 @@ img.wiki-image {
     height:18px;
 }
 
-.background-control .layer-toggle-gpx .layer-extent {
+.map-data-control .layer-list button,
+.background-control .layer-list button {
+    float: right;
+    height: 100%;
+    width: 10%;
     border-left: 1px solid #CCC;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0;
 }
 
-.background-control .layer-toggle-gpx.selected .layer-extent {
-    display:inline-block;
+.map-data-control .layer-list button .icon,
+.background-control .layer-list button .icon {
+    opacity: 0.5;
 }
+
+.map-data-control .layer-list button:first-of-type,
+.background-control .layer-list button:first-of-type {
+    border-radius: 0 3px 3px 0;
+}
+
+.map-data-control .map-overlay,
+.background-control .map-overlay,
+.help-control .map-overlay {
+    z-index: -1;
+}
+
 
 /* Geolocator */
 
@@ -3203,19 +3403,19 @@ img.wiki-image {
     border-radius: 0 0 0 4px;
 }
 
-/* Help */
-
-.help-control button {
-    border-radius: 0 0 0 4px;
-}
-
-.help-wrap {
+.map-overlay.content {
     position: fixed;
     top:60px;
     bottom: 30px;
     padding: 20px 50px 20px 20px;
     right: 0;
-    overflow-y: scroll;
+    overflow: auto;
+}
+
+/* Help */
+
+.help-control button {
+    border-radius: 0 0 0 4px;
 }
 
 .help-wrap p {
@@ -3327,27 +3527,153 @@ img.wiki-image {
     bottom: 0;
 }
 
+/* Map-In-Map
+------------------------------------------------------- */
+
+.map-in-map {
+    position: absolute;
+    overflow: hidden;
+    top: 60px;
+    width: 200px;
+    height: 150px;
+    z-index: 5;
+    background: #000;
+    border: #aaa 1px solid;
+    box-shadow: 0 0 2em black;
+}
+
+.map-in-map-tiles {
+    transform-origin:0 0;
+    -ms-transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+    -moz-transform-origin:0 0;
+    -o-transform-origin:0 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.map-in-map-svg {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.map-in-map-bbox {
+    fill: none;
+    stroke: rgba(255, 255, 0, 0.75);
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.map-in-map-bbox.thick {
+    stroke-width: 5;
+}
+
 /* About Section
 ------------------------------------------------------- */
 
-.about-block {
+#about {
+    width: 100%;
     position: absolute;
     right:0;
     bottom:0;
     border-radius: 0;
-    opacity: .625;
-    -webkit-transition: opacity 200ms;
-    -moz-transition: opacity 200ms;
-    transition: opacity 200ms;
 }
 
-.about-block:hover {
-    opacity: 1;
+#attrib {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 5px;
+    float: left;
+    clear: both;
+    pointer-events: none;
 }
 
-#about {
+#attrib * { pointer-events: all; }
+
+.base-layer-attribution,
+.overlay-layer-attribution {
+    position: absolute;
+    color: #888;
+    font-size: 10px;
+}
+
+.base-layer-attribution {
+    left: 10px;
+}
+
+.overlay-layer-attribution {
+    right: 10px;
+}
+
+.overlay-layer-attribution .attribution:not(:last-child):after {
+    content: '; ';
+}
+
+.source-image {
+    height:20px;
+    vertical-align:top;
+}
+
+#footer {
+    width: 100%;
+    float: left;
+    clear: both;
+}
+
+#scale-block {
+    display: table-cell;
+    vertical-align: bottom;
+    width: 250px;
+    height: 30px;
+    float: left;
+    clear: left;
+}
+
+#info-block {
+    float: right;
+    clear: right;
+}
+
+#scale {
+    height: 30px;
+    width: 100%;
+}
+
+#scale text {
+    font: 12px sans-serif;
+    stroke: none;
+    fill: #ccc;
+    text-anchor: start;
+}
+
+#scale path {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+#about-list {
     text-align: right;
     margin-right: 10px;
+    clear: right;
+}
+
+#about-list li {
+    float: right;
+    border-left: 1px solid rgba(255,255,255,.5);
+    padding: 5px 0 5px 5px;
+    margin-left: 5px;
+}
+
+#about-list li:last-child {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .source-switch a {
@@ -3359,59 +3685,44 @@ img.wiki-image {
     color:#fff;
 }
 
-/* Attribution overlay */
-.attribution {
-    position: absolute;
-    bottom: 35px;
-    left:10px;
-    color:#888;
-    font-size:10px;
-}
-
-.source-image {
-    height:20px;
-    vertical-align:top;
+.feature-warning a {
+    background: #1e90ff;
+    padding: 2px 4px 4px 4px;
+    border-radius: 2px;
+    color: #eee;
 }
 
 .user-list a:not(:last-child):after {
     content: ', ';
 }
 
-/* API Status */
-
 .api-status {
-    float: left;
+    float: right;
+    clear: both;
+    text-align: right;
+    width: 100%;
+    padding: 0px 10px;
 }
 
 .api-status.offline,
-.api-status.readonly {
+.api-status.readonly,
+.api-status.error {
     background: red;
-    padding: 5px 10px;
-}
-
-/* Account Information */
-
-.account {
-    float: left;
-    padding: 5px 10px;
-}
-
-.account .logout {
-    margin-left:10px;
-    border-left: 1px solid white;
-    padding-left: 10px;
 }
 
 /* Modals
 ------------------------------------------------------- */
 
 .modal {
+    top: 40px;
     display: inline-block;
     position:absolute;
+    border-radius: 3px;
+    overflow: hidden;
     left: 0;
     right: 0;
     margin: auto;
-    z-index: 3;
+    z-index: 50;
 }
 
 .modal .loader {
@@ -3423,7 +3734,7 @@ img.wiki-image {
 }
 
 .shaded {
-    z-index: 2;
+    z-index: 49;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -3444,8 +3755,19 @@ img.wiki-image {
     border-bottom: 1px solid #CCC;
 }
 
-.modal-section:last-child {
-    border-bottom: 0;
+.modal-section.header h3 {
+    padding: 0;
+}
+
+.modal-section.buttons {
+    text-align: center;
+}
+
+.modal-section.buttons .action {
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .loading-modal {
@@ -3474,7 +3796,8 @@ img.wiki-image {
     display: block;
     content: '';
     height: 100px;
-    width: 100px;
+    width: 100%;
+    max-width: 100px;
     margin: auto;
     margin-bottom: 10px;
     background:transparent url(img/sprite.svg) no-repeat 0 -220px;
@@ -3484,15 +3807,19 @@ img.wiki-image {
     border-right: 1px solid #CCC;
 }
 
+.modal-section:last-child {
+    border-bottom: 0;
+}
+
 /* Restore Modal
 ------------------------------------------------------- */
 
 .modal-actions .restore:before {
-    background-position: -500px -220px;
+    background-position: -600px -220px;
 }
 
 .modal-actions .reset:before {
-    background-position: -600px -220px;
+    background-position: -700px -220px;
 }
 
 /* Success Modal
@@ -3506,16 +3833,28 @@ img.wiki-image {
     padding-top: 15px;
 }
 
-.save-success .osm:before {
+.save-success .button.social {
+    height: 80px;
+}
+
+.save-success .button.social:before {
+    height: 50px;
+}
+
+.save-success .button.osm:before {
     background-position: 0px -220px;
 }
 
-.save-success .twitter:before {
-    background-position: -100px -220px;
+.save-success .button.twitter:before {
+    background-position: -100px -245px;
 }
 
-.save-success .facebook:before {
-    background-position: -200px -220px;
+.save-success .button.facebook:before {
+    background-position: -200px -245px;
+}
+
+.save-success .button.google:before {
+    background-position: -300px -245px;
 }
 
 /* Splash Modal
@@ -3523,11 +3862,11 @@ img.wiki-image {
 
 .modal-actions .walkthrough:before,
 .walkthrough a:before {
-    background-position: -300px -220px;
+    background-position: -400px -220px;
 }
 
 .modal-actions .start:before {
-    background-position: -400px -220px;
+    background-position: -500px -220px;
 }
 
 /* Commit Modal
@@ -3539,12 +3878,6 @@ img.wiki-image {
 
 .mode-save .commit-form {
     margin-bottom: 0;
-}
-
-.mode-save button.action {
-    float: none;
-    margin: auto;
-    display: block;
 }
 
 .mode-save .user-info img {
@@ -3565,12 +3898,14 @@ img.wiki-image {
     color:#fff;
 }
 
+.mode-save .commit-info {
+    margin-bottom: 10px;
+}
+
 .mode-save .changeset-list {
-    overflow: auto;
     border:1px solid #ccc;
     border-radius: 4px;
     background:#fff;
-    max-height: 160px;
 }
 
 .mode-save .warning-section .changeset-list button {
@@ -3581,6 +3916,15 @@ img.wiki-image {
     position: relative;
     border-top:1px solid #ccc;
     padding:5px 10px;
+    cursor: pointer;
+}
+
+.mode-save .changeset-list li:hover {
+    background-color: #ececec;
+}
+
+.mode-save .changeset-list .alert {
+    opacity: 0.5;
 }
 
 .changeset-list li span.count {
@@ -3588,11 +3932,65 @@ img.wiki-image {
     color:#555;
 }
 
+.mode-save .commit-section .changeset-list button {
+    border-left: 1px solid #CCC;
+}
+
 .changeset-list li span.count:before { content: '('; }
 
 .changeset-list li span.count:after { content: ')'; }
 
 .changeset-list li:first-child { border-top: 0;}
+
+/* Conflict resolution
+------------------------------------------------------- */
+
+.conflicts-help {
+    padding: 20px;
+    background-color: #ffffbb;
+    border-bottom: 1px solid #ccc;
+}
+
+.conflicts-buttons {
+    padding: 20px;
+}
+
+.mode-save button.conflicts-button {
+    float: left;
+}
+
+.conflict-container {
+    border-bottom: 1px solid #ccc;
+}
+
+.conflict-description {
+    padding: 5px 20px;
+    display: block;
+}
+
+.conflicts-done {
+    padding: 20px 20px 0 20px;
+}
+
+.conflict-detail-container {
+    padding: 10px 20px;
+}
+
+.conflict-count {
+    padding: 10px 20px;
+}
+
+.conflict-choices {
+    margin-top: 10px;
+}
+
+.conflict-nav-buttons {
+    padding: 10px 0 20px 0;
+}
+
+.conflict-nav-button {
+    height: 30px;
+}
 
 /* Notices
 ------------------------------------------------------- */
@@ -3669,6 +4067,7 @@ img.wiki-image {
 
 .tooltip-inner {
     display: inline-block;
+    border-radius: 3px;
     max-width: 200px;
     min-width: 80px;
     padding: 10px;
@@ -3701,6 +4100,7 @@ img.wiki-image {
 }
 
 .tail div {
+    border-radius: 3px;
     padding: 10px;
     background: white;
     position: absolute;
@@ -3768,55 +4168,50 @@ img.wiki-image {
     background: #F6F6F6;
     padding: 10px;
     margin: 10px -10px -10px;
+    border-radius: 0 0 3px 3px;
 }
 
 .tooltip-inner .keyhint {
-    font-size: 10px;
-    padding: 0 7px;
     font-weight: bold;
-    display: inline-block;
-    border-radius: 2px;
-    border: 1px solid #CCC;
-    position: relative;
-    z-index: 1;
-    text-align: left;
-}
-
-.tooltip-inner .keyhint::after {
-    content: "";
-    position: absolute;
-    border-radius: 2px;
-    height: 10px;
-    width: 100%;
-    z-index: 0;
-    bottom: -4px;
-    left: -1px;
-    border: 1px solid #CCC;
-    border-top: 0;
 }
 
 /* Exceptions for tooltip layouts */
 
-/* make tooltips in editor pane dark */
-.entity-editor-pane .tooltip.top .tooltip-arrow {
+/* make tooltips in panels dark */
+.map-overlay .tooltip.top .tooltip-arrow,
+.entity-editor-pane .tooltip.top .tooltip-arrow,
+.warning-section .tooltip.top .tooltip-arrow {
     border-top-color: #000;
 }
 
-.entity-editor-pane .tooltip.bottom .tooltip-arrow {
+.map-overlay .tooltip.bottom .tooltip-arrow,
+.entity-editor-pane .tooltip.bottom .tooltip-arrow,
+.warning-section .tooltip.bottom .tooltip-arrow {
     border-bottom-color: #000;
 }
 
-.entity-editor-pane .tooltip.left .tooltip-arrow {
+.map-overlay .tooltip.left .tooltip-arrow,
+.entity-editor-pane .tooltip.left .tooltip-arrow,
+.warning-section .tooltip.left .tooltip-arrow {
     border-left-color: #000;
 }
 
-.entity-editor-pane .tooltip.right .tooltip-arrow {
+.map-overlay .tooltip.right .tooltip-arrow,
+.entity-editor-pane .tooltip.right .tooltip-arrow,
+.warning-section .tooltip.right .tooltip-arrow {
     border-right-color: #000;
 }
 
-.entity-editor-pane .tooltip-inner {
+.map-overlay .tooltip-inner,
+.map-overlay .keyhint-wrap,
+.entity-editor-pane .tooltip-inner,
+.warning-section .tooltip-inner {
     background: #000;
     color: #ccc;
+}
+/* commit warning tooltips need to be closer */
+.warning-section .tooltip.top {
+    margin-top: -5px;
 }
 
 /* Uncramp map-control tooltips */
@@ -3825,7 +4220,7 @@ img.wiki-image {
 }
 /* Move over tooltips that are near the edge of screen */
 .add-point .tooltip {
-    left: 33.3333% !important; 
+    left: 33.3333% !important;
 }
 
 .curtain-tooltip.intro-points-add .tooltip-arrow,
@@ -3862,10 +4257,6 @@ img.wiki-image {
     fill: rgba(255,255,255,.5);
 }
 
-.radial-menu .icon {
-    pointer-events: none;
-}
-
 .lasso-box {
     fill-opacity:0.1;
     stroke: #fff;
@@ -3882,6 +4273,19 @@ img.wiki-image {
     /* override hide for save button */
     #bar .save .label { display: block;}
 }
+
+@media screen and (max-width: 1200px) {
+    .user-list { display: none !important; }
+}
+
+@media screen and (max-width: 1000px) {
+    #userLink { display: none !important; }
+}
+
+@media screen and (max-width: 900px) {
+    #scale-block { display: none !important; }
+}
+
 
 /* Scrollbars
  ----------------------------------------------------- */
@@ -4007,7 +4411,7 @@ img.wiki-image {
 .huge-modal-button .illustration {
     height: 100px;
     width: 100px;
-    background: rgba(0, 0, 0, 0) url(img/sprite.svg) no-repeat -301px -220px;
+    background: rgba(0, 0, 0, 0) url(img/sprite.svg) no-repeat -400px -220px;
     margin: auto;
 }
 /* This file is generated by make. Do NOT edit manually. */
@@ -4015,99 +4419,122 @@ img.wiki-image {
 .preset-icon{background-image:url(img/maki-sprite.png);background-repeat:no-repeat;width:24px;height:24px;}
 .preset-icon-line{background-image:url(img/line-presets.png);background-repeat:no-repeat;width:60px;height:60px;}
 .preset-icon-relation{background-image:url(img/relation-presets.png);background-repeat:no-repeat;width:60px;height:60px;}
-.feature-airfield{background-position:-0px -34px;}
-.feature-airport{background-position:-0px -94px;}
-.feature-alcohol-shop{background-position:-0px -154px;}
-.feature-america-football{background-position:-0px -214px;}
-.feature-art-gallery{background-position:-0px -274px;}
-.feature-bank{background-position:-0px -334px;}
-.feature-bar{background-position:-0px -394px;}
-.feature-baseball{background-position:-0px -454px;}
-.feature-basketball{background-position:-0px -514px;}
-.feature-beer{background-position:-0px -574px;}
-.feature-bicycle{background-position:-0px -634px;}
-.feature-building{background-position:-0px -694px;}
-.feature-bus{background-position:-0px -754px;}
-.feature-cafe{background-position:-0px -814px;}
-.feature-campsite{background-position:-0px -874px;}
-.feature-cemetery{background-position:-0px -934px;}
-.feature-cinema{background-position:-0px -994px;}
-.feature-circle{background-position:-0px -1054px;}
-.feature-circle-stroked{background-position:-0px -1114px;}
-.feature-city{background-position:-0px -1174px;}
-.feature-college{background-position:-0px -1234px;}
-.feature-commercial{background-position:-0px -1294px;}
-.feature-cricket{background-position:-0px -1354px;}
-.feature-cross{background-position:-0px -1414px;}
-.feature-dam{background-position:-0px -1474px;}
-.feature-danger{background-position:-0px -1534px;}
-.feature-disability{background-position:-0px -1594px;}
-.feature-embassy{background-position:-0px -1654px;}
-.feature-emergency-telephone{background-position:-0px -1714px;}
-.feature-farm{background-position:-0px -1774px;}
-.feature-fast-food{background-position:-0px -1834px;}
-.feature-ferry{background-position:-0px -1894px;}
-.feature-fire-station{background-position:-0px -1954px;}
-.feature-fuel{background-position:-0px -2014px;}
-.feature-garden{background-position:-0px -2074px;}
-.feature-golf{background-position:-0px -2134px;}
-.feature-grocery{background-position:-0px -2194px;}
-.feature-harbor{background-position:-0px -2254px;}
-.feature-heliport{background-position:-0px -2314px;}
-.feature-hospital{background-position:-0px -2374px;}
-.feature-industrial{background-position:-0px -2434px;}
-.feature-land-use{background-position:-0px -2494px;}
-.feature-library{background-position:-0px -2554px;}
-.feature-lodging{background-position:-0px -2614px;}
-.feature-logging{background-position:-0px -2674px;}
-.feature-marker{background-position:-0px -2734px;}
-.feature-marker-stroked{background-position:-0px -2794px;}
-.feature-monument{background-position:-0px -2854px;}
-.feature-museum{background-position:-0px -2914px;}
-.feature-music{background-position:-0px -2974px;}
-.feature-oil-well{background-position:-0px -3034px;}
-.feature-park{background-position:-0px -3094px;}
-.feature-park2{background-position:-0px -3154px;}
-.feature-parking{background-position:-0px -3214px;}
-.feature-parking-garage{background-position:-0px -3274px;}
-.feature-pharmacy{background-position:-0px -3334px;}
-.feature-pitch{background-position:-0px -3394px;}
-.feature-place-of-worship{background-position:-0px -3454px;}
-.feature-police{background-position:-0px -3514px;}
-.feature-post{background-position:-0px -3574px;}
-.feature-prison{background-position:-0px -3634px;}
-.feature-rail{background-position:-0px -3694px;}
-.feature-rail-above{background-position:-0px -3754px;}
-.feature-rail-underground{background-position:-0px -3814px;}
-.feature-religious-christian{background-position:-0px -3874px;}
-.feature-religious-jewish{background-position:-0px -3934px;}
-.feature-religious-muslim{background-position:-0px -3994px;}
-.feature-restaurant{background-position:-0px -4054px;}
-.feature-roadblock{background-position:-0px -4114px;}
-.feature-school{background-position:-0px -4174px;}
-.feature-shop{background-position:-0px -4234px;}
-.feature-skiing{background-position:-0px -4294px;}
-.feature-slaughterhouse{background-position:-0px -4354px;}
-.feature-soccer{background-position:-0px -4414px;}
-.feature-square{background-position:-0px -4474px;}
-.feature-square-stroked{background-position:-0px -4534px;}
-.feature-star{background-position:-0px -4594px;}
-.feature-star-stroked{background-position:-0px -4654px;}
-.feature-swimming{background-position:-0px -4714px;}
-.feature-telephone{background-position:-0px -4774px;}
-.feature-tennis{background-position:-0px -4834px;}
-.feature-theatre{background-position:-0px -4894px;}
-.feature-toilets{background-position:-0px -4954px;}
-.feature-town{background-position:-0px -5014px;}
-.feature-town-hall{background-position:-0px -5074px;}
-.feature-triangle{background-position:-0px -5134px;}
-.feature-triangle-stroked{background-position:-0px -5194px;}
-.feature-village{background-position:-0px -5254px;}
-.feature-warehouse{background-position:-0px -5314px;}
-.feature-waste-basket{background-position:-0px -5374px;}
-.feature-water{background-position:-0px -5434px;}
-.feature-wetland{background-position:-0px -5494px;}
-.feature-zoo{background-position:-0px -5554px;}
+.feature-circle-stroked{background-position:-0px -0px;}
+.feature-circle{background-position:-54px -0px;}
+.feature-square-stroked{background-position:-108px -0px;}
+.feature-square{background-position:-162px -0px;}
+.feature-triangle-stroked{background-position:-216px -0px;}
+.feature-triangle{background-position:-0px -24px;}
+.feature-star-stroked{background-position:-54px -24px;}
+.feature-star{background-position:-108px -24px;}
+.feature-cross{background-position:-162px -24px;}
+.feature-marker-stroked{background-position:-216px -24px;}
+.feature-marker{background-position:-0px -48px;}
+.feature-religious-jewish{background-position:-54px -48px;}
+.feature-religious-christian{background-position:-108px -48px;}
+.feature-religious-muslim{background-position:-162px -48px;}
+.feature-cemetery{background-position:-216px -48px;}
+.feature-rocket{background-position:-0px -72px;}
+.feature-airport{background-position:-54px -72px;}
+.feature-heliport{background-position:-108px -72px;}
+.feature-rail{background-position:-162px -72px;}
+.feature-rail-metro{background-position:-216px -72px;}
+.feature-rail-light{background-position:-0px -96px;}
+.feature-bus{background-position:-54px -96px;}
+.feature-fuel{background-position:-108px -96px;}
+.feature-parking{background-position:-162px -96px;}
+.feature-parking-garage{background-position:-216px -96px;}
+.feature-airfield{background-position:-0px -120px;}
+.feature-roadblock{background-position:-54px -120px;}
+.feature-ferry{background-position:-108px -120px;}
+.feature-harbor{background-position:-162px -120px;}
+.feature-bicycle{background-position:-216px -120px;}
+.feature-park{background-position:-0px -144px;}
+.feature-park2{background-position:-54px -144px;}
+.feature-museum{background-position:-108px -144px;}
+.feature-lodging{background-position:-162px -144px;}
+.feature-monument{background-position:-216px -144px;}
+.feature-zoo{background-position:-0px -168px;}
+.feature-garden{background-position:-54px -168px;}
+.feature-campsite{background-position:-108px -168px;}
+.feature-theatre{background-position:-162px -168px;}
+.feature-art-gallery{background-position:-216px -168px;}
+.feature-pitch{background-position:-0px -192px;}
+.feature-soccer{background-position:-54px -192px;}
+.feature-america-football{background-position:-108px -192px;}
+.feature-tennis{background-position:-162px -192px;}
+.feature-basketball{background-position:-216px -192px;}
+.feature-baseball{background-position:-0px -216px;}
+.feature-golf{background-position:-54px -216px;}
+.feature-swimming{background-position:-108px -216px;}
+.feature-cricket{background-position:-162px -216px;}
+.feature-skiing{background-position:-216px -216px;}
+.feature-school{background-position:-0px -240px;}
+.feature-college{background-position:-54px -240px;}
+.feature-library{background-position:-108px -240px;}
+.feature-post{background-position:-162px -240px;}
+.feature-fire-station{background-position:-216px -240px;}
+.feature-town-hall{background-position:-0px -264px;}
+.feature-police{background-position:-54px -264px;}
+.feature-prison{background-position:-108px -264px;}
+.feature-embassy{background-position:-162px -264px;}
+.feature-beer{background-position:-216px -264px;}
+.feature-restaurant{background-position:-0px -288px;}
+.feature-cafe{background-position:-54px -288px;}
+.feature-shop{background-position:-108px -288px;}
+.feature-fast-food{background-position:-162px -288px;}
+.feature-bar{background-position:-216px -288px;}
+.feature-bank{background-position:-0px -312px;}
+.feature-grocery{background-position:-54px -312px;}
+.feature-cinema{background-position:-108px -312px;}
+.feature-pharmacy{background-position:-162px -312px;}
+.feature-hospital{background-position:-216px -312px;}
+.feature-danger{background-position:-0px -336px;}
+.feature-industrial{background-position:-54px -336px;}
+.feature-warehouse{background-position:-108px -336px;}
+.feature-commercial{background-position:-162px -336px;}
+.feature-building{background-position:-216px -336px;}
+.feature-place-of-worship{background-position:-0px -360px;}
+.feature-alcohol-shop{background-position:-54px -360px;}
+.feature-logging{background-position:-108px -360px;}
+.feature-oil-well{background-position:-162px -360px;}
+.feature-slaughterhouse{background-position:-216px -360px;}
+.feature-dam{background-position:-0px -384px;}
+.feature-water{background-position:-54px -384px;}
+.feature-wetland{background-position:-108px -384px;}
+.feature-disability{background-position:-162px -384px;}
+.feature-telephone{background-position:-216px -384px;}
+.feature-emergency-telephone{background-position:-0px -408px;}
+.feature-toilets{background-position:-54px -408px;}
+.feature-waste-basket{background-position:-108px -408px;}
+.feature-music{background-position:-162px -408px;}
+.feature-land-use{background-position:-216px -408px;}
+.feature-city{background-position:-0px -432px;}
+.feature-town{background-position:-54px -432px;}
+.feature-village{background-position:-108px -432px;}
+.feature-farm{background-position:-162px -432px;}
+.feature-bakery{background-position:-216px -432px;}
+.feature-dog-park{background-position:-0px -456px;}
+.feature-lighthouse{background-position:-54px -456px;}
+.feature-clothing-store{background-position:-108px -456px;}
+.feature-polling-place{background-position:-162px -456px;}
+.feature-playground{background-position:-216px -456px;}
+.feature-entrance{background-position:-0px -480px;}
+.feature-heart{background-position:-54px -480px;}
+.feature-london-underground{background-position:-108px -480px;}
+.feature-minefield{background-position:-162px -480px;}
+.feature-rail-underground{background-position:-216px -480px;}
+.feature-rail-above{background-position:-0px -504px;}
+.feature-camera{background-position:-54px -504px;}
+.feature-laundry{background-position:-108px -504px;}
+.feature-car{background-position:-162px -504px;}
+.feature-suitcase{background-position:-216px -504px;}
+.feature-hairdresser{background-position:-0px -528px;}
+.feature-chemist{background-position:-54px -528px;}
+.feature-mobilephone{background-position:-108px -528px;}
+.feature-scooter{background-position:-162px -528px;}
+.feature-gift{background-position:-216px -528px;}
+.feature-ice-cream{background-position:-0px -552px;}
 .preset-icon-line.feature-highway-motorway{background-position:-20px -25px;}
 .preset-icon-line.feature-highway-trunk{background-position:-80px -25px;}
 .preset-icon-line.feature-highway-primary{background-position:-140px -25px;}
@@ -4163,3 +4590,10 @@ img.wiki-image {
 .preset-icon-relation.feature-route-power{background-position:-800px -25px;}
 .preset-icon-relation.feature-route-pipeline{background-position:-860px -25px;}
 .preset-icon-relation.feature-route-master{background-position:-920px -25px;}
+.preset-icon-relation.feature-restriction-no-straight-on{background-position:-980px -25px;}
+.preset-icon-relation.feature-restriction-no-u-turn{background-position:-1040px -25px;}
+.preset-icon-relation.feature-restriction-no-left-turn{background-position:-1100px -25px;}
+.preset-icon-relation.feature-restriction-no-right-turn{background-position:-1160px -25px;}
+.preset-icon-relation.feature-restriction-only-straight-on{background-position:-1220px -25px;}
+.preset-icon-relation.feature-restriction-only-left-turn{background-position:-1280px -25px;}
+.preset-icon-relation.feature-restriction-only-right-turn{background-position:-1340px -25px;}
