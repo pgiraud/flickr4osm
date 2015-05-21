@@ -163,6 +163,10 @@
     stroke-width: 1;
     fill: #7CB4FF;
 }
+path.viewfield {
+    stroke: none;
+    fill-opacity: 0.6;
+}
 .layer-flickr4osm {
     pointer-events: none;
 }
