@@ -145,8 +145,9 @@ flickr4osm.ui.PhotoEditor = function(context) {
                     data.direction = direction;
 
                     enter.append('path')
-                            .attr('transform', 'translate(-8, -13)')
-                            .attr('d', 'M 2,7 C 7,4 9,4 14,7 L 8,0 z');
+                            .attr('class', 'viewfield')
+                            .attr('transform', 'scale(1.5,1.5),translate(-8, -13)')
+                            .attr('d', 'M 6,9 C 8,8.4 8,8.4 10,9 L 16,-2 C 12,-5 4,-5 0,-2 z');
                 }
 
                 enter.append('circle')
