@@ -1,7 +1,6 @@
 flickr4osm.ui = function(context) {
     function render(container) {
-        var history = context.history(),
-            map = context.map();
+        var map = context.map();
 
         if (iD.detect().opera) container.classed('opera', true);
 
@@ -12,6 +11,10 @@ flickr4osm.ui = function(context) {
         if (!hash.hadHash) {
             map.centerZoom([-77.02271, 38.90085], 20);
         }
+
+        container.append('svg')
+            .attr('id', 'defs')
+            .call(iD.svg.Defs(context));
 
         var sidebar = d3.select('#sidebar');
         sidebar.call(ui.sidebar);
@@ -24,13 +27,13 @@ flickr4osm.ui = function(context) {
             .call(map);
 
         content.append('div')
-            .attr('class', 'spinner')
-            .call(iD.ui.Spinner(context));
+            .attr('class', 'map-in-map')
+            .style('display', 'none')
+            .call(iD.ui.MapInMap(context));
 
         content.append('div')
-            .attr('class', 'attribution')
-            .attr('tabindex', -1)
-            .call(iD.ui.Attribution(context));
+            .attr('class', 'spinner')
+            .call(iD.ui.Spinner(context));
 
         var controls = content.append('div')
             .attr('class', 'map-controls');
@@ -38,6 +41,10 @@ flickr4osm.ui = function(context) {
         controls.append('div')
             .attr('class', 'map-control background-control')
             .call(iD.ui.Background(context));
+
+        controls.append('div')
+            .attr('class', 'map-control map-data-control')
+            .call(iD.ui.MapData(context));
 
         controls.append('div')
             .attr('class', 'map-control zoombuttons')
@@ -109,5 +116,11 @@ flickr4osm.ui = function(context) {
 };
 
 iD.ui.tooltipHtml = function(text, key) {
-    return '<span>' + text + '</span>' + '<div class="keyhint-wrap">' + '<span> ' + (t('tooltip_keyhint')) + ' </span>' + '<span class="keyhint"> ' + key + '</span></div>';
+    var s = '<span>' + text + '</span>';
+    if (key) {
+        s += '<div class="keyhint-wrap">' +
+            '<span> ' + (t('tooltip_keyhint')) + ' </span>' +
+            '<span class="keyhint"> ' + key + '</span></div>';
+    }
+    return s;
 };
